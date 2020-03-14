@@ -13,7 +13,7 @@ const pool = new Pool({
 
 router.get("/", (req, res, next) => {
   pool.query(`
-  SELECT name
+  SELECT name, age, location
   FROM members;
 `)
     .then(result => {
@@ -30,7 +30,7 @@ router.get("/", (req, res, next) => {
 router.get("/:userId", (req, res, next) => {
   const userId = req.params.userId;
   pool.query(`
-  SELECT name
+  SELECT name, age, location
   FROM members
   WHERE user_id = ${userId};
 `)
@@ -45,5 +45,35 @@ router.get("/:userId", (req, res, next) => {
     });
 
 });
+
+
+router.post("/", (request, response) => {
+  if (process.env.TEST_ERROR) {
+    setTimeout(() => response.status(500).json({}), 1000);
+    return;
+  }
+
+  const name = request.body.name;
+  const age = request.body.age;
+  const location = request.body.location;
+  console.log(name);
+  console.log(age);
+  console.log(location);
+
+  pool.query(
+    `
+    INSERT INTO members (name, age, location)
+    VALUES ($1::VARCHAR, $2::VARCHAR, $3::VARCHAR)
+  `,
+    [name, age, location]
+  )
+    .then(() => {
+      setTimeout(() => {
+        response.status(204).json({});
+      }, 1000);
+    })
+    .catch(error => console.log(error));
+});
+
 
 module.exports = router;
