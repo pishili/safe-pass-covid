@@ -17,7 +17,25 @@ router.get("/", (req, res, next) => {
   FROM members;
 `)
     .then(result => {
-      console.log('adasdadsads');
+      console.log(result.rows.length);
+      res.send(result.rows)
+    })
+    .catch(err => {
+      console.error('query error', err.stack)
+      res.send("ERROR");
+    });
+
+});
+
+router.get("/:userId", (req, res, next) => {
+  const userId = req.params.userId;
+  pool.query(`
+  SELECT name
+  FROM members
+  WHERE user_id = ${userId};
+`)
+    .then(result => {
+      console.log("member for specific user")
       console.log(result.rows.length);
       res.send(result.rows)
     })
