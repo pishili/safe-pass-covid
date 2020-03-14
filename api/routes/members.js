@@ -3,25 +3,29 @@ var router = express.Router();
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'docker',
+    user: 'postgres',
     password: 'example',
     host: 'localhost',
     port: 5672,
     database: 'project'
 })
 
+
 router.get("/", (req, res, next) => {
   pool.query(`
   SELECT name
-  FROM members
-  LIMIT 1;
-  `)
-  .then(res => {
-    console.log(res);
-  })
-  .catch(err => console.error('query error', err.stack));
-    console.log('Family Members');
-    res.send("Let's Pass COVID-19 SAFE");
+  FROM members;
+`)
+    .then(result => {
+      console.log('adasdadsads');
+      console.log(result.rows.length);
+      res.send(result.rows)
+    })
+    .catch(err => {
+      console.error('query error', err.stack)
+      res.send("ERROR");
+    });
+
 });
 
 module.exports = router;
