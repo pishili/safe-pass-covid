@@ -57,6 +57,32 @@ router.post("/", (request, response) => {
     .catch(error => console.log(error));
 });
 
+router.put("/:id", (request, response) => {
+  if (process.env.TEST_ERROR) {
+    setTimeout(() => response.status(500).json({}), 1000);
+    return;
+  }
+
+  const name = request.body.name;
+  const email = request.body.email;
+  const id = Number(request.params.id);
+
+  pool.query(
+    `
+    UPDATE users
+    SET name = $1::VARCHAR, email = $2::VARCHAR
+    WHERE id = $3::integer
+  `,
+    [name, email, id]
+  )
+    .then(() => {
+      setTimeout(() => {
+        response.status(204).json({});
+      }, 1000);
+    })
+    .catch(error => console.log(error));
+});
+
 
 
 module.exports = router;
