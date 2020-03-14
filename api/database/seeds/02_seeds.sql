@@ -1,10 +1,10 @@
 \c project;
 
   INSERT INTO members (
-    user_id, name, email, password) 
+    user_id, name, age, location) 
     VALUES (1,
-    'Devin Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
+    'Devin Sanders', 60, 'Tehran');
     INSERT INTO members (
-    user_id, name, email, password) 
+    user_id, name, age, location) 
     VALUES (2,
-    'Iva Harrison', 'allisonjackson@mail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
+    'Iva Harrison', 50, 'Milan');

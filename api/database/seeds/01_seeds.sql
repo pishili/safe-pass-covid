@@ -13,8 +13,8 @@ CREATE DATABASE project;
       id serial PRIMARY KEY,
       user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
       name VARCHAR,
-      email VARCHAR,
-      password VARCHAR
+      age INTEGER,
+      location VARCHAR
   );
 
     INSERT INTO users (
