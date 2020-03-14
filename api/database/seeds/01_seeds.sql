@@ -11,6 +11,7 @@ CREATE DATABASE project;
 
     CREATE TABLE members (
       id serial PRIMARY KEY,
+      user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
       name VARCHAR,
       email VARCHAR,
       password VARCHAR
