@@ -28,4 +28,35 @@ router.get("/", (req, res, next) => {
 });
 
 
+router.post("/", (request, response) => {
+  if (process.env.TEST_ERROR) {
+    setTimeout(() => response.status(500).json({}), 1000);
+    return;
+  }
+
+  const name = request.body.name;
+  const email = request.body.email;
+
+  console.log(name);
+  console.log(email);
+  // response.send(name)
+
+  pool.query(
+    `
+    INSERT INTO users (name, email)
+    VALUES ($1::VARCHAR, $2::VARCHAR)
+  `,
+    [name, email]
+  )
+    .then(() => {
+      setTimeout(() => {
+        response.status(204).json({});
+      }, 1000);
+      console.log('yaya')
+    })
+    .catch(error => console.log(error));
+});
+
+
+
 module.exports = router;
