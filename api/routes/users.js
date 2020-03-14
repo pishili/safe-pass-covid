@@ -83,6 +83,25 @@ router.put("/:id", (request, response) => {
     .catch(error => console.log(error));
 });
 
+router.delete("/:id", (request, response) => {
+  if (process.env.TEST_ERROR) {
+    setTimeout(() => response.status(500).json({}), 1000);
+    return;
+  }
+
+  const id = Number(request.params.id)
+
+
+  pool.query(
+    `DELETE FROM users
+     WHERE id = $1`, [id])
+    .then(() => {
+      setTimeout(() => {
+        response.status(204).json({});
+      }, 1000);
+    });
+});
+
 
 
 module.exports = router;
