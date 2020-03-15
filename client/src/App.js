@@ -106,12 +106,10 @@ function App() {
             </TableHead>
             <TableBody>
               {state.members.map(row => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
+                <TableRow>
                   <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.age}</TableCell>
+                  <TableCell>{row.location}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
