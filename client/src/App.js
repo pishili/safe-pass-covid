@@ -118,8 +118,13 @@ function App() {
           </Table>
         </TableContainer>
 
-        <div>
-        </div>
+        <ReactMapGL
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+          {...viewport}
+          onViewportChange={setViewport}
+        >
+          {cityMarkers}
+        </ReactMapGL>
       </header>
     </div>
   );
