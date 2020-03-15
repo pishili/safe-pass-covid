@@ -73,6 +73,25 @@ function App() {
     callAPI()
   }, [])
 
+  useEffect(() => {
+    const latitudeResponse = axios.get("http://localhost:8001/api/days");
+    const directionResponse = axios.get(`http://map.googleapis.com/maps/api/${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`);
+    const elevationResponse = `https://maps.googleapis.com/maps/api/elevation/json?locations=39.7391536,-104.9847034&key=${process.env.REACT_APP_GOOGLE_ACCESS_TOKEN}`
+    Promise.all([
+      Promise.resolve(latitudeResponse, elevationResponse),
+
+    ]).then((all) => {
+      const [latitudeResponse, elevationResponse] = all
+
+      const lats = latitudeResponse.data
+      console.log(`latitudes are ${lats}`);
+      const elevations = elevationResponse.data
+      console.log(`elevations are ${elevations}`);
+      setViewport(prev => ({ ...prev, lats, elevations }));
+    });
+
+  }, [setViewport.latitude, setViewport.longitude])
+
 
 
   return (
