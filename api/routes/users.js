@@ -37,10 +37,6 @@ router.post("/", (request, response) => {
   const name = request.body.name;
   const email = request.body.email;
 
-  console.log(name);
-  console.log(email);
-  // response.send(name)
-
   pool.query(
     `
     INSERT INTO users (name, email)
@@ -52,7 +48,6 @@ router.post("/", (request, response) => {
       setTimeout(() => {
         response.status(204).json({});
       }, 1000);
-      console.log('yaya')
     })
     .catch(error => console.log(error));
 });
@@ -100,6 +95,28 @@ router.delete("/:id", (request, response) => {
         response.status(204).json({});
       }, 1000);
     });
+});
+
+router.get("/:id/members", (req, res, next) => {
+  const userId = Number(req.params.id);
+  console.log('YAYYYY');
+  console.log(userId);  
+
+  pool.query(`
+  SELECT *
+  FROM members
+  WHERE user_id = ${userId}
+`)
+    .then(result => {
+      console.log("members of specific user");
+      console.log(result.rows.length);
+      res.send(result.rows)
+    })
+    .catch(err => {
+      console.error('query error', err.stack)
+      res.send("ERROR");
+    });
+
 });
 
 
