@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import ReactMapGL from 'react-map-gl';
+import { Marker } from 'react-map-gl';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,7 +10,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import cities from "./cities.json";
+import CityPin from "./city-pin";
+const axios = require('axios');
 
 const useStyles = makeStyles({
   table: {
@@ -24,6 +28,14 @@ function App() {
   const [state, setState] = useState({
     members: [],
     columns: []
+  })
+
+  const [viewport, setViewport] = useState({
+    width: 1000,
+    height: 1200,
+    latitude: 37.777,
+    longitude: -122.4376,
+    zoom: 8
   })
 
   const callAPI = () => {
@@ -74,6 +86,7 @@ function App() {
             </TableBody>
           </Table>
         </TableContainer>
+
         <div>
         </div>
       </header>
