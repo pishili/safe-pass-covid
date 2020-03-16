@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ReactMapGL from 'react-map-gl';
 import { Marker } from 'react-map-gl';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -24,6 +24,16 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 const axios = require('axios');
+
+const StyledTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 16,
+  },
+}))(TableCell);
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,7 +93,7 @@ function App() {
             }
           })
         console.log(members)
-        const columns = ["name", "age", "location"]
+        const columns = ["Name", "Age", "Location"]
         setState(prev => ({ ...prev, ...{ members, columns } }))
       })
       .catch(err => err);
@@ -136,15 +146,15 @@ function App() {
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    {state.columns.map(col => <TableCell>{col}</TableCell>)}
+                    {state.columns.map(col => <StyledTableCell>{col}</StyledTableCell>)}
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {state.members.map(row => (
                     <TableRow>
-                      <TableCell>{row.name}</TableCell>
-                      <TableCell>{row.age}</TableCell>
-                      <TableCell>{row.location}</TableCell>
+                      <StyledTableCell>{row.name}</StyledTableCell>
+                      <StyledTableCell>{row.age}</StyledTableCell>
+                      <StyledTableCell>{row.location}</StyledTableCell>
                     </TableRow>
                   ))}
                 </TableBody>
