@@ -18,6 +18,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Grid from '@material-ui/core/Grid';
+
 
 const axios = require('axios');
 
@@ -47,8 +49,8 @@ function App() {
   })
 
   const [viewport, setViewport] = useState({
-    width: 1000,
-    height: 1200,
+    width: '100%',
+    height: 600,
     latitude: 37.777,
     longitude: -122.4376,
     zoom: 8
@@ -112,43 +114,55 @@ function App() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            SafePass
+      <Grid container spacing={3} alignItems="center" alignContent="center" >
+        <Grid item xs={12}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" className={classes.title}>
+                SafePass
           </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              {state.columns.map(col => <TableCell>{col}</TableCell>)}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {state.members.map(row => (
-              <TableRow>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.age}</TableCell>
-                <TableCell>{row.location}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+              <Button color="inherit">Login</Button>
+            </Toolbar>
+          </AppBar>
+        </Grid>
+        <Grid item xs={3} />
+        <Grid item xs={6}>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  {state.columns.map(col => <TableCell>{col}</TableCell>)}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {state.members.map(row => (
+                  <TableRow>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.age}</TableCell>
+                    <TableCell>{row.location}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+        <Grid item xs={3} />
+        <Grid item xs={2} />
+        <Grid container item xs={8} justify="center">
+          <ReactMapGL
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            {...viewport}
+            onViewportChange={setViewport}
+          >
+            {cityMarkers}
+          </ReactMapGL>
+        </Grid>
+        <Grid item xs={2} />
+      </Grid>
 
-      <ReactMapGL
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        {...viewport}
-        onViewportChange={setViewport}
-      >
-        {cityMarkers}
-      </ReactMapGL>
     </div>
   );
 }
