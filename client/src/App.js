@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ReactMapGL from 'react-map-gl';
 import { Marker } from 'react-map-gl';
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,6 +12,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import cities from "./cities.json";
 import CityPin from "./city-pin";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+
 const axios = require('axios');
 
 const useStyles = makeStyles({
@@ -20,10 +26,23 @@ const useStyles = makeStyles({
   },
 });
 
+const useStylesForNav = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
 
 function App() {
 
   const classes = useStyles();
+  const navClasses = useStylesForNav();
 
   const [state, setState] = useState({
     members: [],
@@ -96,6 +115,17 @@ function App() {
 
   return (
     <div className="App">
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={navClasses.menuButton} color="inherit" aria-label="menu">
+            
+          </IconButton>
+          <Typography variant="h6" className={navClasses.title}>
+            News
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
       <header className="App-header">
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
