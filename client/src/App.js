@@ -17,16 +17,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const axios = require('axios');
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
-
-const useStylesForNav = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -36,13 +31,15 @@ const useStylesForNav = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
+  table: {
+    minWidth: 650,
+  },
 }));
 
 
 function App() {
 
   const classes = useStyles();
-  const navClasses = useStylesForNav();
 
   const [state, setState] = useState({
     members: [],
@@ -114,46 +111,44 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={navClasses.menuButton} color="inherit" aria-label="menu">
-            
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={navClasses.title}>
-            News
+          <Typography variant="h6" className={classes.title}>
+            SafePass
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <header className="App-header">
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              {state.columns.map(col => <TableCell>{col}</TableCell>)}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {state.members.map(row => (
               <TableRow>
-                {state.columns.map(col => <TableCell>{col}</TableCell>)}
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.age}</TableCell>
+                <TableCell>{row.location}</TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {state.members.map(row => (
-                <TableRow>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.age}</TableCell>
-                  <TableCell>{row.location}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-        <ReactMapGL
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-          {...viewport}
-          onViewportChange={setViewport}
-        >
-          {cityMarkers}
-        </ReactMapGL>
-      </header>
+      <ReactMapGL
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+        {...viewport}
+        onViewportChange={setViewport}
+      >
+        {cityMarkers}
+      </ReactMapGL>
     </div>
   );
 }
