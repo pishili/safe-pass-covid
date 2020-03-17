@@ -152,9 +152,9 @@ function App() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth={false}>
-        <Grid container spacing={3}>
+        <Grid container spacing={6}>
           <Grid item xs={12}>
-            <AppBar position="static">
+            <AppBar position="static" style={{ backgroundColor: 'black'}}>
               <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                   <MenuIcon />
@@ -166,6 +166,20 @@ function App() {
               </Toolbar>
             </AppBar>
           </Grid>
+          <Grid item xs={1} />
+          <Grid container item xs={10} justify="center">
+            <MapGL
+              {...viewport}
+              mapStyle="mapbox://styles/mapbox/dark-v10"
+              onViewportChange={setViewport}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            >
+              <Source type="geojson" data={state.data}>
+                <Layer {...dataLayer} />
+              </Source>
+            </MapGL>
+          </Grid>
+          <Grid item xs={1} />
           <Grid item xs={3} />
           <Grid item xs={6}>
             <TableContainer component={Paper}>
@@ -188,20 +202,6 @@ function App() {
             </TableContainer>
           </Grid>
           <Grid item xs={3} />
-          <Grid item xs={2} />
-          <Grid container item xs={8} justify="center">
-            <MapGL
-              {...viewport}
-              mapStyle="mapbox://styles/mapbox/dark-v10"
-              onViewportChange={setViewport}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-            >
-              <Source type="geojson" data={state.data}>
-                <Layer {...dataLayer} />
-              </Source>
-            </MapGL>
-          </Grid>
-          <Grid item xs={2} />
         </Grid>
       </Container>
     </React.Fragment>
