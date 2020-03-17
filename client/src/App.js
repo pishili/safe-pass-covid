@@ -88,18 +88,6 @@ function App() {
     pitch: 0
   })
 
-  let cityMarkers = cities.map((c) => {
-    return (
-      <Marker
-        latitude={c.latitude}
-        longitude={c.longitude}
-        offsetLeft={0}
-        offsetTop={0}>
-        <CityPin />
-      </Marker>
-    )
-  })
-
   const callAPI = () => {
     fetch("/members")
       .then(res => res.text())
