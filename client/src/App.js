@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import ReactMapGL from 'react-map-gl';
+import MapGL, { Source, Layer } from 'react-map-gl';
 import { Marker } from 'react-map-gl';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -21,6 +21,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import countriesGeojson from './countries.geo.json'
+import timeseries from './timeseries.json';
+import { dataLayer } from './map-style.js';
 
 
 const axios = require('axios');
@@ -57,15 +60,18 @@ function App() {
 
   const [state, setState] = useState({
     members: [],
-    columns: []
+    columns: [],
+    data: null
   })
 
   const [viewport, setViewport] = useState({
     width: '100%',
     height: 600,
-    latitude: 37.777,
-    longitude: -122.4376,
-    zoom: 8
+    latitude: 40,
+    longitude: -100,
+    zoom: 3,
+    bearing: 0,
+    pitch: 0
   })
 
   let cityMarkers = cities.map((c) => {
@@ -92,7 +98,6 @@ function App() {
               location: i.location
             }
           })
-        console.log(members)
         const columns = ["Name", "Age", "Location"]
         setState(prev => ({ ...prev, ...{ members, columns } }))
       })
@@ -121,6 +126,27 @@ function App() {
     });
 
   }, [setViewport.latitude, setViewport.longitude])
+
+  useEffect(() => {
+    const countries = countriesGeojson
+    const cases = timeseries
+    let casesPerCountry = {}
+    for (let key in cases) {
+      const selectedDay = cases[key].filter((item) => {
+        return item.date === "2020-3-15"
+      })[0]
+      casesPerCountry[key] = selectedDay.confirmed
+    }
+
+    for (let f in countries.features) {
+      const country = countries.features[f].properties.name
+      if (country in casesPerCountry) {
+        countries.features[f].properties.confirmedCases = casesPerCountry[country]
+      }
+    }
+    setState(prev => ({ ...prev, ...{ data: countries } }))
+
+  }, [state.data])
 
   return (
     <React.Fragment>
@@ -164,13 +190,16 @@ function App() {
           <Grid item xs={3} />
           <Grid item xs={2} />
           <Grid container item xs={8} justify="center">
-            <ReactMapGL
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            <MapGL
               {...viewport}
+              mapStyle="mapbox://styles/mapbox/dark-v10"
               onViewportChange={setViewport}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
             >
-              {cityMarkers}
-            </ReactMapGL>
+              <Source type="geojson" data={state.data}>
+                <Layer {...dataLayer} />
+              </Source>
+            </MapGL>
           </Grid>
           <Grid item xs={2} />
         </Grid>
