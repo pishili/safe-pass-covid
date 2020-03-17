@@ -51,6 +51,17 @@ const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 650,
   },
+  tooltip: {
+    position: 'absolute',
+    margin: '8px',
+    padding: '4px',
+    background: 'rgba(0, 0, 0, 0.8)',
+    color: '#fff',
+    'max-width': '300px',
+    'font-size': '10px',
+    'z-index': 9,
+    'pointer-events': 'none',
+  }
 }));
 
 
@@ -61,7 +72,10 @@ function App() {
   const [state, setState] = useState({
     members: [],
     columns: [],
-    data: null
+    data: null,
+    hoveredFeature: null,
+    x: null,
+    y: null
   })
 
   const [viewport, setViewport] = useState({
@@ -148,6 +162,29 @@ function App() {
 
   }, [state.data])
 
+  const onHover = (event) => {
+    const {
+      features,
+      srcEvent: {offsetX, offsetY}
+    } = event;
+    const hoveredFeature = features && features.find(f => f.layer.id === 'data');
+
+    setState(prev => ({...prev, ...{hoveredFeature, x: offsetX, y: offsetY}}));
+  };
+
+  const renderTooltip = () => {
+    const {hoveredFeature, x, y} = state;
+
+    return (
+      hoveredFeature && (
+        <div className={classes.tooltip} style={{left: x, top: y}}>
+          <div>Country: {hoveredFeature.properties.name}</div>
+          <div>Confirmed Cases: {hoveredFeature.properties.confirmedCases}</div>
+        </div>
+      )
+    );
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -173,10 +210,12 @@ function App() {
               mapStyle="mapbox://styles/mapbox/dark-v10"
               onViewportChange={setViewport}
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+              onHover={onHover}
             >
               <Source type="geojson" data={state.data}>
                 <Layer {...dataLayer} />
               </Source>
+              {renderTooltip()}
             </MapGL>
           </Grid>
           <Grid item xs={1} />
