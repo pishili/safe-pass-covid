@@ -104,24 +104,45 @@ function App() {
       .catch(err => err);
   }
 
-  useEffect(() => {
-    callAPI()
-  }, [])
-
   const getCaseForDate = (cases, date) => {
-    for(let key in cases) {
+    for (let key in cases) {
       const selectedDate = cases[key].filter((item) => {
         return item.date === date
       })
       return selectedDate[0]
     }
   }
-  
+
+  const getCasesForAllDates = (cases, type) => {
+    let confirmedPerDate = {}
+    for (let key in cases) {
+      cases[key].map((item) => {
+        if (!(item.date in confirmedPerDate)) {
+          confirmedPerDate[item.date] = [item[type]]
+        } else {
+          confirmedPerDate[item.date].push(item[type])
+        }
+      })
+    }
+    return confirmedPerDate;
+  }
+
+  useEffect(() => {
+    callAPI()
+  }, [])
+
+
 
   useEffect(() => {
     const countries = countriesGeojson
     const cases = timeseries
     console.log(getCaseForDate(cases, "2020-3-15"));
+    const confirmed = getCasesForAllDates(cases,'confirmed')
+    const recovered = getCasesForAllDates(cases,'recovered')
+    const deaths = getCasesForAllDates(cases,'deaths')
+    console.log(confirmed)
+    console.log(recovered)
+    console.log(deaths)
 
     let casesPerCountry = {}
     for (let key in cases) {
@@ -144,19 +165,19 @@ function App() {
   const onHover = (event) => {
     const {
       features,
-      srcEvent: {offsetX, offsetY}
+      srcEvent: { offsetX, offsetY }
     } = event;
     const hoveredFeature = features && features.find(f => f.layer.id === 'data');
 
-    setState(prev => ({...prev, ...{hoveredFeature, x: offsetX, y: offsetY}}));
+    setState(prev => ({ ...prev, ...{ hoveredFeature, x: offsetX, y: offsetY } }));
   };
 
   const renderTooltip = () => {
-    const {hoveredFeature, x, y} = state;
+    const { hoveredFeature, x, y } = state;
 
     return (
       hoveredFeature && (
-        <div className={classes.tooltip} style={{left: x, top: y}}>
+        <div className={classes.tooltip} style={{ left: x, top: y }}>
           <div>Country: {hoveredFeature.properties.name}</div>
           <div>Confirmed Cases: {hoveredFeature.properties.confirmedCases}</div>
         </div>
@@ -170,7 +191,7 @@ function App() {
       <Container maxWidth={false}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <AppBar position="static" style={{ backgroundColor: 'black'}}>
+            <AppBar position="static" style={{ backgroundColor: 'black' }}>
               <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                   <MenuIcon />
@@ -225,5 +246,4 @@ function App() {
     </React.Fragment>
   );
 }
-
 export default App;
