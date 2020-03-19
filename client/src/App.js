@@ -25,7 +25,6 @@ import countriesGeojson from './countries.geo.json'
 import timeseries from './timeseries.json';
 import { dataLayer } from './map-style.js';
 
-
 const axios = require('axios');
 
 const StyledTableCell = withStyles(theme => ({
@@ -63,7 +62,6 @@ const useStyles = makeStyles(theme => ({
     'pointer-events': 'none',
   }
 }));
-
 
 function App() {
 
@@ -110,9 +108,21 @@ function App() {
     callAPI()
   }, [])
 
+  const getCaseForDate = (cases, date) => {
+    for(let key in cases) {
+      const selectedDate = cases[key].filter((item) => {
+        return item.date === date
+      })
+      return selectedDate[0]
+    }
+  }
+  
+
   useEffect(() => {
     const countries = countriesGeojson
     const cases = timeseries
+    console.log(getCaseForDate(cases, "2020-3-15"));
+
     let casesPerCountry = {}
     for (let key in cases) {
       const selectedDay = cases[key].filter((item) => {
