@@ -24,6 +24,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import countriesGeojson from './countries.geo.json'
 import timeseries from './timeseries.json';
 import { dataLayer } from './map-style.js';
+import { AddBox, ArrowDownward } from "@material-ui/icons";
+import MaterialTable from "material-table";
+import SearchTable from "./components/SearchTable"
 
 const axios = require('axios');
 
@@ -131,15 +134,13 @@ function App() {
     callAPI()
   }, [])
 
-
-
   useEffect(() => {
     const countries = countriesGeojson
     const cases = timeseries
     console.log(getCaseForDate(cases, "2020-3-15"));
-    const confirmed = getCasesForAllDates(cases,'confirmed')
-    const recovered = getCasesForAllDates(cases,'recovered')
-    const deaths = getCasesForAllDates(cases,'deaths')
+    const confirmed = getCasesForAllDates(cases, 'confirmed')
+    const recovered = getCasesForAllDates(cases, 'recovered')
+    const deaths = getCasesForAllDates(cases, 'deaths')
     console.log(confirmed)
     console.log(recovered)
     console.log(deaths)
@@ -239,6 +240,12 @@ function App() {
                 </TableBody>
               </Table>
             </TableContainer>
+          </Grid>
+          <Grid item xs={3} />
+          <Grid item xs={3} />
+          <Grid item xs={6}>
+            <SearchTable
+            />
           </Grid>
           <Grid item xs={3} />
         </Grid>

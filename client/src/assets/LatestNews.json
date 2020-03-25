@@ -1,0 +1,244 @@
+{
+    "articles": [
+        {
+            "source": {
+                "id": null,
+                "name": "Nanaimobulletin.com"
+            },
+            "publishedAt": "2020-03-15T18:30:00Z",
+            "title": "Cancer patients urged to keep all appointments, if possible, despite COVID-19 - Nanaimo News Bulletin",
+            "url": "https://www.nanaimobulletin.com/news/cancer-patients-urged-to-keep-all-appointments-if-possible-despite-covid-19/",
+            "urlToImage": "https://www.nanaimobulletin.com/wp-content/uploads/2020/03/20923642_web1_Coronavirus-ADW-200204-hands-W-1024x661.jpg",
+            "description": "<p>While coronavirus presents higher risk to immune compromised, cancer treatment remains important </p>",
+            "content": "Cancer patients may have reason to be extra cautious during the COVID-19 pandemic, says BC Cancer.\r\nAnd to help guide those patients through this time, the agency has issued a question and answer on their website.\r\nThe questions are those that are on the top … [+2423 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Theguardian.com"
+            },
+            "publishedAt": "2020-03-15T18:22:53Z",
+            "title": "Coronavirus: health experts fear epidemic will ‘let rip’ through UK - The Guardian",
+            "url": "https://www.theguardian.com/world/2020/mar/15/coronavirus-health-experts-fear-epidemic-will-let-rip-through-uk",
+            "urlToImage": "https://i.guim.co.uk/img/media/72a85ce87f48814e0eb1b0ad362ed76eb19a7b23/0_274_4341_2605/master/4341.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=b806333c52d0cc5e4ee3ce3ee2ec8d4a",
+            "description": "Doctors and scientists urge government to stop ignoring strategies from countries that have brought cases down",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Thestar.com"
+            },
+            "publishedAt": "2020-03-15T17:37:30Z",
+            "title": "Three more people test positive for coronavirus in Manitoba, bringing province’s total to at least seven - Toronto Star",
+            "url": "https://www.thestar.com/news/canada/2020/03/15/three-more-people-test-positive-for-coronavirus-in-manitoba-bringing-provinces-total-to-at-least-seven.html",
+            "urlToImage": "https://images.thestar.com/DsysoS0Ldns3x_ELe583RRry9vE=/1200x798/smart/filters:cb(1584292246718)/https://www.thestar.com/content/dam/thestar/news/canada/2020/03/15/three-more-people-test-positive-for-coronavirus-in-manitoba-bringing-provinces-total-to-at-least-seven/manitoba.jpg",
+            "description": "Chief public health officer Dr. Brent Roussin says cases in Canada, including in Manitoba, are largely connected to international travel.",
+            "content": "WINNIPEG—Manitoba officials have announced three additional cases of COVID-19.\r\nA man in his 70s and two women, one in her 50s and one in her 70s, have tested positive for the novel coronavirus.\r\nThere are now a total of seven cases in Manitoba. Four have bee… [+1304 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Sky.com"
+            },
+            "publishedAt": "2020-03-15T17:05:52Z",
+            "title": "Coronavirus: Wife's heartbreak as 'soul mate' becomes UK's youngest victim - Sky News",
+            "url": "https://news.sky.com/story/coronavirus-wifes-heartbreak-as-soul-mate-becomes-uks-youngest-victim-11958030",
+            "urlToImage": "https://e3.365dm.com/20/03/1600x900/skynews-mary-matthews-coronavirus_4948120.jpg?20200315163920",
+            "description": "Nick Matthews from Nailsea in Bristol had underlying health conditions and passed away on Saturday morning.",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Youtube.com"
+            },
+            "publishedAt": "2020-03-15T16:56:01Z",
+            "title": "Coronavirus : UK death toll rises to 35 - BBC News - BBC News",
+            "url": "https://www.youtube.com/watch?v=PYsLa4A-Jic",
+            "urlToImage": "https://i.ytimg.com/vi/PYsLa4A-Jic/maxresdefault.jpg",
+            "description": "Fourteen more people have died from the coronavirus in the UK, raising the death toll to 35, the UK's health department says. There have been a total of 1,37...",
+            "content": "Fourteen more people have died from the coronavirus in the UK, raising the death toll to 35, the UK's health department says.\r\nThere have been a total of 1,372 positive tests for coronavirus in the UK as of Sunday, up from 1,140 on Saturday, the department ad… [+48 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Youtube.com"
+            },
+            "publishedAt": "2020-03-15T16:44:57Z",
+            "title": "Brian Stelter: The great shutdown of 2020 is underway - CNN",
+            "url": "https://www.youtube.com/watch?v=IB9jS-h8SRw",
+            "urlToImage": "https://i.ytimg.com/vi/IB9jS-h8SRw/maxresdefault.jpg",
+            "description": "CNN's Brian Stelter examines how changes due to the coronavirus pandemic are upending life around the globe, and how social distancing may help \"flatten the ...",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Stcatharinesstandard.ca"
+            },
+            "publishedAt": "2020-03-15T16:39:43Z",
+            "title": "Second Niagara COVID-19 case confirmed; no community exposure, officials say - StCatharinesStandard.ca",
+            "url": "https://www.stcatharinesstandard.ca/news-story/9907139-second-niagara-covid-19-case-confirmed-no-community-exposure-officials-say/",
+            "urlToImage": "https://dynamicmedia.zuza.com/zz/m/original_/2/c/2c006a1f-bc73-42b4-bbfe-104a3eff26f7/B881077153Z.1_20200315122701_000_GHCTIHPU.3-0_Super_Portrait.jpg",
+            "description": "A second case of the novel coronavirus has been confirmed in Niagara.",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Globalnews.ca"
+            },
+            "publishedAt": "2020-03-15T15:45:13Z",
+            "title": "Coronavirus: Manitoba cases up to 7, says province’s top doc - Global News",
+            "url": "http://globalnews.ca/news/6679628/manitoba-government-covid-19-update/",
+            "urlToImage": "https://shawglobalnews.files.wordpress.com/2019/09/img_7903.jpg?quality=70&strip=all&crop=0px%2C0px%2C5184px%2C2739px&resize=720%2C379",
+            "description": "The province will share an update on COVID-19 in Manitoba Sunday at 11 a.m.",
+            "content": "The province says the number of cases for presumptive and confirmed COVID-19 is now at seven.\r\nThree more presumptive cases were identified Sunday, including one person in the Interlake.\r\nThree more presumptive cases of COVID-19 in Manitoba have been confirme… [+1689 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Globalnews.ca"
+            },
+            "publishedAt": "2020-03-15T15:32:58Z",
+            "title": "Coronavirus: Kingston assessment centre only testing for COVID-19 for recent travellers - Global News",
+            "url": "http://globalnews.ca/news/6679421/coronavirus-kingston-assessment-travelers-only/",
+            "urlToImage": "https://shawglobalnews.files.wordpress.com/2020/03/covid_19-centre.jpg?quality=70&strip=all&w=720&h=379&crop=1",
+            "description": "A sign on the Kingston, Ont.'s assessment centre's door says only a specific group of people will be accepted there.",
+            "content": "A dedicated novel coronavirus assessment centre has opened in Kingston, Ont., but local public health officials want residents to know that only recent travellers will be tested for COVID-19.\r\nOn Saturday, the COVID-19 testing centre opened at Hotel Dieus St.… [+3140 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Ctvnews.ca"
+            },
+            "publishedAt": "2020-03-15T15:29:04Z",
+            "title": "Anti-inflammatory drugs could worsen COVID-19 symptoms, France warns - CTV News",
+            "url": "https://www.ctvnews.ca/health/coronavirus/anti-inflammatory-drugs-could-worsen-covid-19-symptoms-france-warns-1.4853821",
+            "urlToImage": "https://www.ctvnews.ca/polopoly_fs/1.3627312.1507720372!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
+            "description": "France's health minister says ibuprofen and other common anti-inflammatory drugs could be an 'aggravating factor' for the new coronavirus.",
+            "content": "TORONTO -- \r\nPopular medications that may be taken in the hope of fighting COVID-19 could in fact make symptoms worse, France's health minister says.\r\nOlivier Veran tweeted Saturday that ibuprofen, cortisone and other common anti-inflammatory drugs could be a… [+1785 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Therecord.com"
+            },
+            "publishedAt": "2020-03-15T14:12:41Z",
+            "title": "Updated: Waterloo Region now has six cases of coronavirus - TheRecord.com",
+            "url": "https://www.therecord.com/news-story/9906734-updated-waterloo-region-now-has-six-cases-of-coronavirus/",
+            "urlToImage": "https://dynamicmedia.zuza.com/zz/m/original_/f/1/f176e054-e49d-410b-a482-65f8aa962852/B881076502Z.1_20200315102221_000_GS8TIBV4.3-0_Super_Portrait.jpg",
+            "description": "Another local man has tested positive for novel coronavirus, bringing the total cases to six in Waterloo Region.",
+            "content": "The Region of Waterloo Public Health confirmed that the fifth case is a man in his 40s from Waterloo Region who was on a cruise ship when he developed mild respiratory symptoms on March 1.\r\nThe Celebrity Silhouette cruise ship left from Fort Lauderdale on Feb… [+965 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "680news.com"
+            },
+            "publishedAt": "2020-03-15T13:52:24Z",
+            "title": "Hamilton reports 4 new cases of COVID-19 - 680 News",
+            "url": "https://www.680news.com/2020/03/15/hamilton-reports-new-cases-of-covid-19/",
+            "urlToImage": "https://www.680news.com/wp-content/blogs.dir/sites/2/2020/03/CPT13751916.jpg",
+            "description": "The City of Hamilton is reporting 4 new cases of the novel coronavirus, bringing the total in that city up to 5. A post on the city’s official Twitter account said early indications show the cases are all travel related. The city is currently investigating 72…",
+            "content": "The City of Hamilton is reporting 4 new cases of the novel coronavirus, bringing the total in that city up to 5.\r\nA post on the city’s official Twitter account said early indications show the cases are all travel related.\r\nThe city is currently investigating … [+383 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Thelocal.de"
+            },
+            "publishedAt": "2020-03-15T13:28:44Z",
+            "title": "US attempts to poach German scientists to develop exclusive coronavirus vaccine - The Local Germany",
+            "url": "https://www.thelocal.de/20200315/only-for-the-united-states-us-attempts-to-poach-german-scientists-to-develop-exclusive-coronavirus-vaccine",
+            "urlToImage": null,
+            "description": null,
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Youtube.com"
+            },
+            "publishedAt": "2020-03-15T12:43:32Z",
+            "title": "Coronavirus precautions sweep around the world | DW News - DW News",
+            "url": "https://www.youtube.com/watch?v=VQIZkYkIynE",
+            "urlToImage": "https://i.ytimg.com/vi/VQIZkYkIynE/hqdefault.jpg",
+            "description": "While authorities around the world take ever more drastic measures to try to slow the spread of the coronavirus, the number of cases is rising. Indonesia and...",
+            "content": "While authorities around the world take ever more drastic measures to try to slow the spread of the coronavirus, the number of cases is rising. Indonesia and other countries in Asia, such as the Philippines, have also been affected by the coronavirus outbreak… [+830 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Weforum.org"
+            },
+            "publishedAt": "2020-03-15T12:01:06Z",
+            "title": "What is collective intelligence and how can it help us tackle the coronavirus outbreak? - World Economic Forum",
+            "url": "https://www.weforum.org/agenda/2020/03/coronavirus-seven-ways-collective-intelligence-is-tackling-the-pandemic/",
+            "urlToImage": "https://assets.weforum.org/editor/uQyhycmh33ulqOQ5MXi8yl7hPaE-4f2E6VECNJJJl6c.PNG",
+            "description": "From monitoring outbreaks to sharing knowledge, collective intelligence is helping us to understand COVID-19 like never before.",
+            "content": "Tackling the emergence of a new global pandemic is a complex task. But collective intelligence is now being used around the world by communities and governments to respond.\r\nAt its simplest, collective intelligence is the enhanced capacity created when distri… [+6973 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Thestar.com"
+            },
+            "publishedAt": "2020-03-15T11:43:40Z",
+            "title": "What a massive study of COVID-19 cases in China tells Canada about what’s to come - Toronto Star",
+            "url": "https://www.thestar.com/news/gta/2020/03/15/what-a-massive-study-of-covid-19-cases-in-china-tells-canada-about-whats-to-come.html",
+            "urlToImage": "https://images.thestar.com/5sYf6rZ8skYg2AkcadiYQB7sb3k=/1200x780/smart/filters:cb(1584284505531)/https://www.thestar.com/content/dam/thestar/news/gta/2020/03/15/what-a-massive-study-of-covid-19-cases-in-china-tells-canada-about-whats-to-come/vcrd12252347.jpg",
+            "description": "A study of 44,672 confirmed cases in China reveals precious information about what to expect from the coronavirus pandemic.",
+            "content": "As coronavirus spread across China, researchers there moved quickly to follow it.\r\nThe result was a study of thousands of cases that reveals how the outbreak may affect Canadians across age and gender, and who is most at risk — those aged 80 and older and a h… [+6076 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Nny360.com"
+            },
+            "publishedAt": "2020-03-15T04:15:00Z",
+            "title": "Coronavirus, cold or the flu? Here's how to tell the difference - NNY360",
+            "url": "https://www.nny360.com/news/publicservicenews/coronavirus-cold-or-the-flu-here-s-how-to-tell/article_72d52598-bca5-55ef-93de-291ba0d6adf2.html",
+            "urlToImage": "https://bloximages.newyork1.vip.townnews.com/nny360.com/content/tncms/assets/v3/editorial/9/30/93050fa6-66cd-11ea-baf1-e7f6e9477753/5e6e42d2e0f0a.image.jpg?resize=970%2C630",
+            "description": "The Centers for Disease Control and Prevention reported there are more than 400 cases of the new coronavirus, called COVID-19, in the United States.",
+            "content": "The Centers for Disease Control and Prevention reported there are more than 400 cases of the new coronavirus, called COVID-19, in the United States.\r\nAmid reminders to wash your hands and school closings, many may be wondering about how they can tell the diff… [+3270 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Panow.com"
+            },
+            "publishedAt": "2020-03-15T02:48:45Z",
+            "title": "WHO declares coronavirus a pandemic, urges aggressive action - paNOW",
+            "url": "https://panow.com/2020/03/14/who-declares-coronavirus-a-pandemic-urges-aggressive-action-2/",
+            "urlToImage": "https://media.socastsrm.com/wordpress/wp-content/blogs.dir/1479/files/2020/03/5e6cef04023d1648a069f7ffjpeg.jpg",
+            "description": "GENEVA - The World Health Organization declared the coronavirus a pandemic and urged aggressive action from al...",
+            "content": "After downplaying the threat of the virus for days, President Donald Trump announced in an Oval Office address he is sharply restricting European passenger travel to the U.S. and moving to ease the pandemics economic costs.\r\nThe NBA became the first major Ame… [+6243 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "7news.com.au"
+            },
+            "publishedAt": "2020-03-15T01:59:36Z",
+            "title": "Infected people without symptoms might be driving the spread of coronavirus more than we realised - 7NEWS.com.au",
+            "url": "https://7news.com.au/lifestyle/health-wellbeing/infected-people-without-symptoms-might-be-driving-the-spread-of-coronavirus-more-than-we-realised-c-745859",
+            "urlToImage": "https://images.7news.com.au/publication/C-745859/2714f5cd259c34c1a1fac67ba31a42ee3c006cf9-16x9-x0y0w1304h734.png?imwidth=1024",
+            "description": "More than half a dozen studies show people without symptoms are causing substantial amounts of infection.",
+            "content": "New studies in several countries and a large coronavirus outbreak in Massachusetts bring into question reassuring assertions by US officials about the way the novel virus spreads.\r\nThese officials have emphasized that the virus is spread mainly by people who … [+9939 chars]"
+        },
+        {
+            "source": {
+                "id": "cnn",
+                "name": "CNN"
+            },
+            "publishedAt": "2020-03-15T01:42:00Z",
+            "title": "Beijing is promoting traditional medicine as a 'Chinese solution' to coronavirus. Not everyone is on board - CNN International",
+            "url": "https://www.cnn.com/2020/03/14/asia/coronavirus-traditional-chinese-medicine-intl-hnk/index.html",
+            "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/191115042449-03-traditional-chinese-medicine-super-tease.jpg",
+            "description": "Xiong Qingzhen, a drone engineer in the central Chinese metropolis of Wuhan, spent more than two weeks in a makeshift hospital in February receiving treatment for Covid-19, the respiratory disease causing a global health crisis.",
+            "content": "Hong Kong (CNN)Xiong Qingzhen, a drone engineer in the central Chinese metropolis of Wuhan, spent more than two weeks in a makeshift hospital in February receiving treatment for Covid-19, the respiratory disease causing a global health crisis.\r\nEvery morning … [+11079 chars]"
+        }
+    ]
+}
