@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AddBox, ArrowDownward } from "@material-ui/icons";
 import MaterialTable from "material-table";
 
+
 export default function SearchTable(props) {
 
   const data = [
@@ -19,13 +20,32 @@ export default function SearchTable(props) {
     }
   ]
 
+  // const callAPIStores = () => {
+  //   fetch("/stores")
+  //     .then(res => res.text())
+  //     .then(res => {
+  //       let stores = JSON.parse(res)
+  //         .map((i) => {
+  //           return {
+  //             vendor_id: i.vendor_id,
+  //             location: i.location
+  //           }
+  //         })
+  //       const columns = ["Vendor_id", "Location"]
+  //       setState(prev => ({ ...prev, ...{ stores, columns } }))
+  //     })
+  //     .catch(err => err);
+  // }
+
+  // const data = callAPIStores()
+
   const [state, setState] = useState({
     tableData: [],
     isLoading: false
   })
 
   useEffect(() => {
-    setState((prev) => ({ ...prev, ...{ isLoading: false} }))
+    setState((prev) => ({ ...prev, ...{ isLoading: true} }))
     setTimeout(() => {
       setState((prev) => ({ ...prev, ...{ tableData: data, isLoading: false} }))
     }, 2000);
