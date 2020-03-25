@@ -1,10 +1,10 @@
 \c project;
 
   INSERT INTO customers (
-    customer_id, name, age) 
-    VALUES (1,
+    name, age) 
+    VALUES (
     'Devin Sanders', 60);
     INSERT INTO customers (
-    customer_id, name, age) 
-    VALUES (2,
+    name, age) 
+    VALUES (
     'Iva Harrison', 50);
