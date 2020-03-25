@@ -25,7 +25,7 @@ export default function SearchTable(props) {
   })
 
   useEffect(() => {
-    setState((prev) => ({ ...prev, ...{ isLoading: true} }))
+    setState((prev) => ({ ...prev, ...{ isLoading: false} }))
     setTimeout(() => {
       setState((prev) => ({ ...prev, ...{ tableData: data, isLoading: false} }))
     }, 2000);
