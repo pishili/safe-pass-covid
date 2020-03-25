@@ -15,6 +15,7 @@ router.get("/", (req, res, next) => {
   pool.query(`
   SELECT *
   FROM stores;
+  JOIN vendors ON stores.vendor_id =  vendors.id
 `)
     .then(result => {
       console.log(result.rows.length);
