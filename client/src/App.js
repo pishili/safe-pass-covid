@@ -71,6 +71,7 @@ function App() {
   const classes = useStyles();
 
   const [state, setState] = useState({
+    stores: [],
     members: [],
     columns: [],
     data: null,
