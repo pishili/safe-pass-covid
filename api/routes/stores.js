@@ -15,7 +15,8 @@ router.get("/", (req, res, next) => {
   pool.query(`
   SELECT *
   FROM stores
-  INNER JOIN vendors ON stores.vendor_id =  vendors.id;
+  JOIN reservations on reservations.store_id = stores.id
+  JOIN vendors on vendors.id = stores.vendor_id;
 `)
     .then(result => {
       console.log(result.rows.length);
