@@ -32,7 +32,6 @@ export default function SearchTable(props) {
     <div style={{ maxWidth: "100%" }}>
       <MaterialTable
         columns={[
-          { title: "VendorID", field: "vendor_id" },
           { title: "Name", field: "name" },
           { title: "Location", field: "location" },
           { title: "Capacity", field: "capacity" }
