@@ -3,11 +3,11 @@ var router = express.Router();
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'postgres',
-    password: 'example',
-    host: 'localhost',
-    port: 5672,
-    database: 'project'
+  user: 'postgres',
+  password: 'example',
+  host: 'localhost',
+  port: 5672,
+  database: 'project'
 })
 
 
@@ -20,7 +20,20 @@ router.get("/", (req, res, next) => {
 `)
     .then(result => {
       console.log(result.rows.length);
-      res.send(result.rows)
+      const resultList = []
+      result.rows.forEach((item) => {
+        resultList.push(
+          {
+            name: item.name,
+            location: item.location,
+            capacity: item.capacity,
+            slots: {
+              'times': item.visting_hour,
+              'reservedSpots': 50
+            }
+          })
+      })
+      res.send(resultList)
     })
     .catch(err => {
       console.error('query error', err.stack)
