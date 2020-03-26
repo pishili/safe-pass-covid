@@ -18,7 +18,15 @@ export default function SearchTable(props) {
     fetch("/stores")
       .then(res => res.text())
       .then(res => {
-        let stores = JSON.parse(res)
+        let stores = JSON
+          .parse(res)
+          .map((j) => ({
+            name: j.name,
+            location: j.location,
+            capacity: j.capacity,
+            "8 AM": j.slots.reservedSpots
+
+          }))
         setState(prev => ({ ...prev, ...{ tableData: stores, isLoading: false } }))
       })
       .catch(err => err);
@@ -38,11 +46,11 @@ export default function SearchTable(props) {
     { title: "Capacity", field: "capacity" }
   ]
   appointmentsForMorning.forEach((item) => {
-    columns.push({ title: item, item })
+    columns.push({ title: item, field: item })
   })
 
   appointmentsForEvening.forEach((item) => {
-    columns.push({ title: item, item })
+    columns.push({ title: item, field: item })
   })
 
   return (
