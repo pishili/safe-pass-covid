@@ -45,8 +45,8 @@ CREATE TABLE reservations
   id serial PRIMARY KEY,
   store_id INTEGER REFERENCES stores(id) ON DELETE CASCADE,
   customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
-  visting_day INTEGER,
-  visting_hour INTEGER
+  visiting_day INTEGER,
+  visiting_hour INTEGER
 );
 
 
