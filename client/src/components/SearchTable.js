@@ -25,20 +25,17 @@ export default function SearchTable(props) {
       .then(res => res.text())
       .then(res => {
         let stores = JSON.parse(res)
-          .map((i) => {
-            return {
-              vendor_id: i.vendor_id,
-              location: i.location,
-              capacity: i.capacity
-            }
+          // .map((i) => {
+          //   return {
+          //     vendor_id: i.vendor_id,
+          //     location: i.location,
+          //     capacity: i.capacity
+          //   }
           })
           setState(prev => ({ ...prev, ...{ tableData: stores, isLoading: false } }))
       })
       .catch(err => err);
   }
-
-  // const data = callAPIStores();
-  // console.log(data)
 
   const [state, setState] = useState({
     tableData: [],
