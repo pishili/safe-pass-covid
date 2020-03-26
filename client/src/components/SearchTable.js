@@ -10,6 +10,10 @@ export default function SearchTable(props) {
     isLoading: false
   })
 
+  const addTimeStamp = () => {
+    
+  }
+
   const callAPIStores = () => {
     fetch("/stores")
       .then(res => res.text())
@@ -38,7 +42,7 @@ export default function SearchTable(props) {
         ]}
         data={state.tableData}
         isLoading={state.isLoading}
-        title="Demo Title"
+        title="Stores"
       />
     </div>
   )
