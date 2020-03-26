@@ -12,24 +12,32 @@ const pool = new Pool({
 
 
 router.get("/", (req, res, next) => {
+
+  //SELECT store_id, visiting_hour, COUNT(*) FROM reservations
+  // GROUP BY store_id, visiting_hour;
+
   pool.query(`
-  SELECT *
-  FROM stores
-  JOIN reservations on reservations.store_id = stores.id
-  JOIN vendors on vendors.id = stores.vendor_id;
-`)
+  SELECT * FROM stores
+  JOIN vendors ON vendors.id = stores.vendor_id
+  JOIN (
+	  SELECT store_id, visiting_hour, COUNT(*) reservedSpots
+        FROM reservations
+        GROUP BY store_id, visiting_hour
+      ) c ON c.store_id = stores.id;
+  `)
     .then(result => {
       console.log(result.rows.length);
       const resultList = []
       result.rows.forEach((item) => {
+        console.log(item)
         resultList.push(
           {
             name: item.name,
             location: item.location,
             capacity: item.capacity,
             slots: {
-              'times': item.visting_hour,
-              'reservedSpots': 50
+              'time': item.visiting_hour,
+              'reservedSpots': Number(item.reservedspots)
             }
           })
       })
