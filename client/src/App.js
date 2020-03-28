@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import MapGL, { Source, Layer } from 'react-map-gl';
-import { Marker } from 'react-map-gl';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,8 +9,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import cities from "./cities.json";
-import CityPin from "./city-pin";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -25,7 +22,6 @@ import countriesGeojson from './countries.geo.json'
 import timeseries from './timeseries.json';
 import { dataLayer } from './map-style.js';
 import { AddBox, ArrowDownward } from "@material-ui/icons";
-import MaterialTable from "material-table";
 import SearchTable from "./components/SearchTable"
 
 const StyledTableCell = withStyles(theme => ({
@@ -79,9 +75,11 @@ function App() {
   })
 
   const [viewport, setViewport] = useState({
-    width: '100%',
+    width: '40%',
+    borderRadius: 10,
+    alignItems: 'right',
     height: 600,
-    latitude: 40,
+    latitude: 50,
     longitude: -100,
     zoom: 3,
     bearing: 0,
@@ -128,6 +126,7 @@ function App() {
     }
     return confirmedPerDate;
   }
+
 
   useEffect(() => {
     callAPI()
@@ -187,21 +186,20 @@ function App() {
       <Container maxWidth={false}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <AppBar position="static" style={{ backgroundColor: 'white' }}>
+            <AppBar position="static" style={{ backgroundColor: 'black' }}>
               <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title} color="textSecondary">
                   SafePass
-          </Typography>
-                <Button>Login</Button>
-                <Button>Register</Button>
+                </Typography>
+                <Button style={{ backgroundColor: 'white' }}>Login</Button>
               </Toolbar>
             </AppBar>
           </Grid>
           <Grid item xs={1} />
-          <Grid container item xs={10} justify="center">
+          <Grid container item xs={10} justify="center" text-align="right" padding-top="100px">
             <MapGL
               {...viewport}
               mapStyle="mapbox://styles/mapbox/dark-v10"

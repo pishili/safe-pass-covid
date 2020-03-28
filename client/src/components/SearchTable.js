@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { AddBox, ArrowDownward } from "@material-ui/icons";
 import MaterialTable from "material-table";
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import NotInterested from '@material-ui/icons/NotInterested';
 import IconButton from '@material-ui/core/IconButton';
 import { green, red, yellow } from '@material-ui/core/colors';
-import Fab from '@material-ui/core/Fab';
-
 
 export default function SearchTable(props) {
 
@@ -26,7 +23,6 @@ export default function SearchTable(props) {
       .catch(err => err);
   }
 
-
   useEffect(() => {
     setState((prev) => ({ ...prev, ...{ isLoading: true } }))
     setTimeout(() => {
@@ -35,9 +31,7 @@ export default function SearchTable(props) {
 
   }, [])
 
-  // go from nested to one row
   const mapper = (data) => {
-    // return data;
     const newListData = []
     for (let element in data) {
       const newData = {}
@@ -57,19 +51,11 @@ export default function SearchTable(props) {
   const cellStyle = (cellData, rowData) => {
     let style = {}
     const capacity = rowData.capacity
-    // const reserved = cellData ? Number(cellData) : 0
     const reserved = cellData
     let ratio = 0
     if (reserved) {
       ratio = (Number(reserved) / Number(capacity)) * 100
     }
-    // if (ratio < 50) {
-    //   style.backgroundColor = 'green'
-    // } else if (ratio < 75) {
-    //   style.backgroundColor = 'yellow'
-    // } else if (ratio > 85) {
-    //   style.backgroundColor = 'red'
-    // }
     return style
   }
 
@@ -82,7 +68,7 @@ export default function SearchTable(props) {
       if (ratio < 50) {
         render = (
           <div>
-            <IconButton color="inherit" aria-label="add">
+            <IconButton color="inherit" aria-label="add" onClick={() => {alert('yay')}}>
               <AddCircleOutline style={{fill: green['700']}} />
             </IconButton>
           </div>
@@ -90,8 +76,8 @@ export default function SearchTable(props) {
       } else if (ratio < 99) {
         render = (
           <div>
-            <IconButton color="primary" aria-label="add">
-              <AddCircleOutline style={{fill: yellow['700']}}/>
+            <IconButton color="primary" aria-label="add" onClick={() => {alert('no')}}>
+              <AddCircleOutline style={{fill: yellow['800']}}/>
             </IconButton>
           </div>
         )
@@ -113,7 +99,7 @@ export default function SearchTable(props) {
     {
       title: "Name",
       field: "name",
-      // cellStyle: cellStyle
+      cellStyle: cellStyle
     },
     { title: "Location", field: "location" },
     { title: "Capacity", field: "capacity" },
