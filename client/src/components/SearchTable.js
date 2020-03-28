@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { AddBox, ArrowDownward } from "@material-ui/icons";
 import MaterialTable from "material-table";
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+import IconButton from '@material-ui/core/IconButton';
+import Fab from '@material-ui/core/Fab';
 
 
 export default function SearchTable(props) {
@@ -56,12 +59,11 @@ export default function SearchTable(props) {
     const reserved = cellData
     let ratio = 0
     if (reserved) {
-      ratio = (Number(reserved) / Number(capacity))*100
+      ratio = (Number(reserved) / Number(capacity)) * 100
     }
     if (ratio < 50) {
       // style.backgroundColor = 'green'
-      
-    } else if (ratio <75){
+    } else if (ratio < 75) {
       // style.backgroundColor = 'yellow'
     } else {
       // style.backgroundColor = 'red'
@@ -76,15 +78,33 @@ export default function SearchTable(props) {
       ratio = ratio ? ratio : 0
       let render = undefined
       if (ratio < 50) {
-        render = <div>{"can register"}</div>
-      } else if (ratio <99){
-        render = <div>{"almost full"}</div>
+        // render = <div>{"can register"}</div>
+        render = (
+          <div>
+            <IconButton color="primary" aria-label="add">
+              <AddCircleOutline />
+            </IconButton>
+          </div>
+        )
+      } else if (ratio < 99) {
+        render = (
+          <div>
+            <IconButton color="secondary" aria-label="add">
+              <AddCircleOutline />
+            </IconButton>
+          </div>
+        )
       } else {
-        render = <div>{"closed"}</div>
+        render = (
+          <div>
+            <IconButton disabled color="secondary" aria-label="add">
+              <AddCircleOutline />
+            </IconButton>
+          </div>
+        )
       }
       return render
     }
-
     return renderColumn
   }
 
