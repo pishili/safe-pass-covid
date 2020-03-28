@@ -3,59 +3,59 @@
   INSERT INTO stores (
     location, vendor_id, capacity) 
     VALUES (
-    'Downtown', 1, 500);
+    'Downtown', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity) 
     VALUES (
-    'Downtown', 3, 100);
+    'Downtown', 3, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'MetroTown', 1, 50);
+    'MetroTown', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'NorthVan', 2, 80);
+    'NorthVan', 2, 10);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Downtown', 1, 500);
+    'Downtown', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Downtown', 1, 500);
+    'Downtown', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'MetroTown', 1, 50);
+    'MetroTown', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'PortCoquitlam', 1, 200);
+    'PortCoquitlam', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Surrey', 1, 300);
+    'Surrey', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Richmond', 1, 250);
+    'Richmond', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'NorthVan', 2, 80);
+    'NorthVan', 2, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Richmond', 1, 250);
+    'Richmond', 1, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'NorthVan', 2, 80);
+    'NorthVan', 2, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Surrey', 2, 100);
+    'Surrey', 2, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
@@ -63,73 +63,81 @@
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Burnaby', 2, 90);
+    'Burnaby', 2, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Vancouver', 2, 60);
+    'Vancouver', 2, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'NorthVan', 3, 80);
+    'NorthVan', 3, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'NorthVan', 3, 80);
+    'NorthVan', 3, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Vancouver', 3, 90);
+    'Vancouver', 3, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Burnaby', 3, 60);
+    'Burnaby', 3, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Coquitlam', 3, 50);
+    'Coquitlam', 3, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Surrey', 3, 75);
+    'Surrey', 3, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'NorthVan', 4, 80);
+    'NorthVan', 4, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Vancouver', 4, 90);
+    'Vancouver', 4, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Burnaby', 4, 60);
+    'Burnaby', 4, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Coquitlam', 4, 50);
+    'Coquitlam', 4, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Surrey', 4, 85);
+    'Surrey', 4, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'NorthVan', 5, 80);
+    'NorthVan', 5, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Vancouver', 5, 100);
+    'Vancouver', 5, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Burnaby', 5, 70);
+    'Burnaby', 5, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Coquitlam', 5, 60);
+    'Coquitlam', 5, 5);
     INSERT INTO stores (
     location, vendor_id, capacity)
     VALUES (
-    'Surrey', 5, 75);
+    'Surrey', 5, 5);
+    INSERT INTO stores (
+    location, vendor_id, capacity)
+    VALUES (
+    'NorthVan', 6, 5);
+    INSERT INTO stores (
+    location, vendor_id, capacity)
+    VALUES (
+    'Boradway', 6, 5);
     
