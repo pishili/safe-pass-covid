@@ -35,4 +35,16 @@ INSERT INTO vendors
   name)
 VALUES
   (
-    'Persia');    
+    'Persia');
+INSERT INTO vendors
+  (
+  name)
+VALUES
+  (
+    'ChineeseMarket');
+INSERT INTO vendors
+  (
+  name)
+VALUES
+  (
+    'DollarStore');      
