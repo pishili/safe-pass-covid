@@ -46,7 +46,7 @@ CREATE TABLE reservations
   store_id INTEGER REFERENCES stores(id) ON DELETE CASCADE,
   customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
   visiting_day INTEGER,
-  visiting_hour INTEGER
+  visiting_hour VARCHAR
 );
 
 
