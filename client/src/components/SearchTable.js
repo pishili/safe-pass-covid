@@ -59,13 +59,33 @@ export default function SearchTable(props) {
       ratio = (Number(reserved) / Number(capacity))*100
     }
     if (ratio < 50) {
-      style.backgroundColor = 'green'
+      // style.backgroundColor = 'green'
+      
     } else if (ratio <75){
-      style.backgroundColor = 'yellow'
+      // style.backgroundColor = 'yellow'
     } else {
-      style.backgroundColor = 'red'
+      // style.backgroundColor = 'red'
     }
     return style
+  }
+
+  const getRenderColumn = (time) => {
+
+    const renderColumn = (rowData) => {
+      let ratio = (Number(rowData[time]) / Number(rowData.capacity)) * 100
+      ratio = ratio ? ratio : 0
+      let render = undefined
+      if (ratio < 50) {
+        render = <div>{"can register"}</div>
+      } else if (ratio <99){
+        render = <div>{"almost full"}</div>
+      } else {
+        render = <div>{"closed"}</div>
+      }
+      return render
+    }
+
+    return renderColumn
   }
 
   let columns = [
@@ -76,9 +96,9 @@ export default function SearchTable(props) {
     },
     { title: "Location", field: "location" },
     { title: "Capacity", field: "capacity" },
-    { title: '8 AM', field: '8 AM', cellStyle: cellStyle },
-    { title: '9 AM', field: '9 AM', cellStyle: cellStyle },
-    { title: '10 AM', field: '10 AM', cellStyle: cellStyle },
+    { title: '8 AM', field: '8 AM', cellStyle: cellStyle, render: getRenderColumn('8 AM') },
+    { title: '9 AM', field: '9 AM', cellStyle: cellStyle, render: getRenderColumn('9 AM') },
+    { title: '10 AM', field: '10 AM', cellStyle: cellStyle, render: getRenderColumn('10 AM') },
     { title: '11 AM', field: '11 AM', cellStyle: cellStyle },
     { title: '12 PM', field: '12 AM', cellStyle: cellStyle },
     { title: '1 PM', field: '1 PM', cellStyle: cellStyle },
@@ -88,13 +108,6 @@ export default function SearchTable(props) {
     { title: '5 PM', field: '5 PM', cellStyle: cellStyle },
     { title: '6 PM', field: '6 PM', cellStyle: cellStyle }
   ]
-  // appointmentsForMorning.forEach((item) => {
-  //   columns.push({ title: item, field: item })
-  // })
-
-  // appointmentsForEvening.forEach((item) => {
-  //   columns.push({ title: item, field: item })
-  // })
 
   return (
     <div style={{ maxWidth: "100%" }}>
