@@ -30,21 +30,6 @@ router.get("/", (req, res, next) => {
   getStores()
     .then(stores => {
       res.send(stores.rows)
-
-      // result.rows.forEach((item) => {
-      //   console.log(item)
-      //   resultList.push(
-      //     {
-      //       name: item.name,
-      //       location: item.location,
-      //       capacity: item.capacity,
-      //       slots: {
-      //         'time': item.visiting_hour,
-      //         'reservedSpots': Number(item.reservedspots)
-      //       }
-      //     })
-      // })
-      // res.send(resultList)
     })
     .catch(err => {
       console.error('query error', err.stack)
