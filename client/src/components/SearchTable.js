@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { AddBox, ArrowDownward } from "@material-ui/icons";
 import MaterialTable from "material-table";
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+import NotInterested from '@material-ui/icons/NotInterested';
 import IconButton from '@material-ui/core/IconButton';
+import { green, red, yellow } from '@material-ui/core/colors';
 import Fab from '@material-ui/core/Fab';
 
 
@@ -61,36 +63,35 @@ export default function SearchTable(props) {
     if (reserved) {
       ratio = (Number(reserved) / Number(capacity)) * 100
     }
-    if (ratio < 50) {
-      // style.backgroundColor = 'green'
-    } else if (ratio < 75) {
-      // style.backgroundColor = 'yellow'
-    } else {
-      // style.backgroundColor = 'red'
-    }
+    // if (ratio < 50) {
+    //   style.backgroundColor = 'green'
+    // } else if (ratio < 75) {
+    //   style.backgroundColor = 'yellow'
+    // } else if (ratio > 85) {
+    //   style.backgroundColor = 'red'
+    // }
     return style
   }
 
   const getRenderColumn = (time) => {
 
     const renderColumn = (rowData) => {
-      let ratio = (Number(rowData[time]) / Number(rowData.capacity)) * 100
+      let ratio = Math.floor((Number(rowData[time]) / Number(rowData.capacity)) * 100)
       ratio = ratio ? ratio : 0
       let render = undefined
       if (ratio < 50) {
-        // render = <div>{"can register"}</div>
         render = (
           <div>
-            <IconButton color="primary" aria-label="add">
-              <AddCircleOutline />
+            <IconButton color="inherit" aria-label="add">
+              <AddCircleOutline style={{fill: green['700']}} />
             </IconButton>
           </div>
         )
       } else if (ratio < 99) {
         render = (
           <div>
-            <IconButton color="secondary" aria-label="add">
-              <AddCircleOutline />
+            <IconButton color="primary" aria-label="add">
+              <AddCircleOutline style={{fill: yellow['700']}}/>
             </IconButton>
           </div>
         )
@@ -98,7 +99,7 @@ export default function SearchTable(props) {
         render = (
           <div>
             <IconButton disabled color="secondary" aria-label="add">
-              <AddCircleOutline />
+              <NotInterested style={{fill: red['700']}}/>
             </IconButton>
           </div>
         )
@@ -112,21 +113,21 @@ export default function SearchTable(props) {
     {
       title: "Name",
       field: "name",
-      cellStyle: cellStyle
+      // cellStyle: cellStyle
     },
     { title: "Location", field: "location" },
     { title: "Capacity", field: "capacity" },
     { title: '8 AM', field: '8 AM', cellStyle: cellStyle, render: getRenderColumn('8 AM') },
     { title: '9 AM', field: '9 AM', cellStyle: cellStyle, render: getRenderColumn('9 AM') },
     { title: '10 AM', field: '10 AM', cellStyle: cellStyle, render: getRenderColumn('10 AM') },
-    { title: '11 AM', field: '11 AM', cellStyle: cellStyle },
-    { title: '12 PM', field: '12 AM', cellStyle: cellStyle },
-    { title: '1 PM', field: '1 PM', cellStyle: cellStyle },
-    { title: '2 PM', field: '2 PM', cellStyle: cellStyle },
-    { title: '3 PM', field: '3 PM', cellStyle: cellStyle },
-    { title: '4 PM', field: '4 PM', cellStyle: cellStyle },
-    { title: '5 PM', field: '5 PM', cellStyle: cellStyle },
-    { title: '6 PM', field: '6 PM', cellStyle: cellStyle }
+    { title: '11 AM', field: '11 AM', cellStyle: cellStyle, render: getRenderColumn('11 AM') },
+    { title: '12 PM', field: '12 AM', cellStyle: cellStyle, render: getRenderColumn('12 PM')},
+    { title: '1 PM', field: '1 PM', cellStyle: cellStyle, render: getRenderColumn('1 PM') },
+    { title: '2 PM', field: '2 PM', cellStyle: cellStyle, render: getRenderColumn('2 PM') },
+    { title: '3 PM', field: '3 PM', cellStyle: cellStyle, render: getRenderColumn('3 PM') },
+    { title: '4 PM', field: '4 PM', cellStyle: cellStyle, render: getRenderColumn('4 PM') },
+    { title: '5 PM', field: '5 PM', cellStyle: cellStyle, render: getRenderColumn('5 PM') },
+    { title: '6 PM', field: '6 PM', cellStyle: cellStyle, render: getRenderColumn('6 PM') }
   ]
 
   return (
