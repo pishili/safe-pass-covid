@@ -11,37 +11,40 @@ const pool = new Pool({
 })
 
 
-router.get("/", (req, res, next) => {
-
-  //SELECT store_id, visiting_hour, COUNT(*) FROM reservations
-  // GROUP BY store_id, visiting_hour;
-
-  pool.query(`
-  SELECT * FROM stores
+const getStores = (storeId) => {
+  return pool.query(`
+  SELECT name, location, capacity, store_id, vendor_id, json_agg(json_build_object('visiting_hour', visiting_hour, 'reserved_spots', reserved_spots)) as slots
+  FROM
+    (SELECT store_id, visiting_hour, COUNT(customer_id) as reserved_spots
+    FROM reservations
+    GROUP BY store_id, visiting_hour
+    ) as r
+  JOIN stores ON stores.id = r.store_id
   JOIN vendors ON vendors.id = stores.vendor_id
-  JOIN (
-	  SELECT store_id, visiting_hour, COUNT(*) reservedSpots
-        FROM reservations
-        GROUP BY store_id, visiting_hour
-      ) c ON c.store_id = stores.id;
+  GROUP BY name, location, store_id, vendor_id, capacity
+    ;
   `)
-    .then(result => {
-      console.log(result.rows.length);
-      const resultList = []
-      result.rows.forEach((item) => {
-        console.log(item)
-        resultList.push(
-          {
-            name: item.name,
-            location: item.location,
-            capacity: item.capacity,
-            slots: {
-              'time': item.visiting_hour,
-              'reservedSpots': Number(item.reservedspots)
-            }
-          })
-      })
-      res.send(resultList)
+}
+
+router.get("/", (req, res, next) => {
+  getStores()
+    .then(stores => {
+      res.send(stores.rows)
+
+      // result.rows.forEach((item) => {
+      //   console.log(item)
+      //   resultList.push(
+      //     {
+      //       name: item.name,
+      //       location: item.location,
+      //       capacity: item.capacity,
+      //       slots: {
+      //         'time': item.visiting_hour,
+      //         'reservedSpots': Number(item.reservedspots)
+      //       }
+      //     })
+      // })
+      // res.send(resultList)
     })
     .catch(err => {
       console.error('query error', err.stack)
