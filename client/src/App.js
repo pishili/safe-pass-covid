@@ -138,7 +138,6 @@ function App() {
   useEffect(() => {
     const countries = countriesGeojson
     const cases = timeseries
-    // console.log(getCaseForDate(cases, "2020-3-15"));
     const confirmed = getCasesForAllDates(cases, 'confirmed')
     const recovered = getCasesForAllDates(cases, 'recovered')
     const deaths = getCasesForAllDates(cases, 'deaths')
