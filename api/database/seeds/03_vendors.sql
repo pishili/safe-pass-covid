@@ -24,3 +24,15 @@ INSERT INTO vendors
 VALUES
   (
     'SaveOnFood');
+INSERT INTO vendors
+  (
+  name)
+VALUES
+  (
+    'Wallmart');
+INSERT INTO vendors
+  (
+  name)
+VALUES
+  (
+    'Persia');    
