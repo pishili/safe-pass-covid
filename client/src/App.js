@@ -28,8 +28,6 @@ import { AddBox, ArrowDownward } from "@material-ui/icons";
 import MaterialTable from "material-table";
 import SearchTable from "./components/SearchTable"
 
-const axios = require('axios');
-
 const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -58,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     margin: '8px',
     padding: '4px',
     background: 'rgba(0, 0, 0, 0.8)',
-    color: '#fff',
+    color: 'white',
     'max-width': '300px',
     'font-size': '10px',
     'z-index': 9,
@@ -189,15 +187,16 @@ function App() {
       <Container maxWidth={false}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <AppBar position="static" style={{ backgroundColor: 'black' }}>
+            <AppBar position="static" style={{ backgroundColor: 'white' }}>
               <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" className={classes.title}>
+                <Typography variant="h6" className={classes.title} color="textSecondary">
                   SafePass
           </Typography>
-                <Button color="inherit">Login</Button>
+                <Button>Login</Button>
+                <Button>Register</Button>
               </Toolbar>
             </AppBar>
           </Grid>
