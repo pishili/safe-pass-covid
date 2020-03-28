@@ -10,9 +10,6 @@ export default function SearchTable(props) {
     isLoading: false
   })
 
-  // const appointmentsForMorning = ['8 AM', '9 AM', '10 AM', '11 AM']
-  // const appointmentsForEvening = ['12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM']
-
   const callAPIStores = () => {
     fetch("/stores")
       .then(res => res.text())
@@ -23,6 +20,7 @@ export default function SearchTable(props) {
       })
       .catch(err => err);
   }
+
 
   useEffect(() => {
     setState((prev) => ({ ...prev, ...{ isLoading: true } }))
@@ -36,7 +34,7 @@ export default function SearchTable(props) {
   const mapper = (data) => {
     // return data;
     const newListData = []
-    for (let element in data){
+    for (let element in data) {
       const newData = {}
       newData["name"] = data[element].name
       newData["location"] = data[element].location
@@ -51,21 +49,44 @@ export default function SearchTable(props) {
     return newListData
   }
 
+  const cellStyle = (cellData, rowData) => {
+    let style = {}
+    const capacity = rowData.capacity
+    // const reserved = cellData ? Number(cellData) : 0
+    const reserved = cellData
+    let ratio = 0
+    if (reserved) {
+      ratio = (Number(reserved) / Number(capacity))*100
+    }
+    if (ratio < 50) {
+      style.backgroundColor = 'green'
+    } else if (ratio <75){
+      style.backgroundColor = 'yellow'
+    } else {
+      style.backgroundColor = 'red'
+    }
+    return style
+  }
+
   let columns = [
-    { title: "Name", field: "name" },
+    {
+      title: "Name",
+      field: "name",
+      cellStyle: cellStyle
+    },
     { title: "Location", field: "location" },
     { title: "Capacity", field: "capacity" },
-    { title: '8 AM', field: '8 AM'},
-    { title: '9 AM', field: '9 AM'},
-    { title: '10 AM', field: '10 AM'},
-    { title: '11 AM', field: '11 AM'},
-    { title: '12 PM', field: '12 AM'},
-    { title: '1 PM', field: '1 PM'},
-    { title: '2 PM', field: '2 PM'},
-    { title: '3 PM', field: '3 PM'},
-    { title: '4 PM', field: '4 PM'},
-    { title: '5 PM', field: '5 PM'},
-    { title: '6 PM', field: '6 PM'}
+    { title: '8 AM', field: '8 AM', cellStyle: cellStyle },
+    { title: '9 AM', field: '9 AM', cellStyle: cellStyle },
+    { title: '10 AM', field: '10 AM', cellStyle: cellStyle },
+    { title: '11 AM', field: '11 AM', cellStyle: cellStyle },
+    { title: '12 PM', field: '12 AM', cellStyle: cellStyle },
+    { title: '1 PM', field: '1 PM', cellStyle: cellStyle },
+    { title: '2 PM', field: '2 PM', cellStyle: cellStyle },
+    { title: '3 PM', field: '3 PM', cellStyle: cellStyle },
+    { title: '4 PM', field: '4 PM', cellStyle: cellStyle },
+    { title: '5 PM', field: '5 PM', cellStyle: cellStyle },
+    { title: '6 PM', field: '6 PM', cellStyle: cellStyle }
   ]
   // appointmentsForMorning.forEach((item) => {
   //   columns.push({ title: item, field: item })
