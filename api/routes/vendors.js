@@ -10,7 +10,7 @@ const pool = new Pool({
   database: 'project'
 })
 
-router.post("/", (req, res) => {
+router.get("/", (req, res) => {
   const vendor_id = req.body.vendor_id
   console.log(vendor_id)
   
