@@ -5,8 +5,8 @@ import NotInterested from '@material-ui/icons/NotInterested';
 import IconButton from '@material-ui/core/IconButton';
 import { green, red, yellow } from '@material-ui/core/colors';
 import axios from 'axios';
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
+import BarChart from 'react-bar-chart';
+
 export default function SearchTable(props) {
 
   const [state, setState] = useState({
@@ -75,7 +75,7 @@ export default function SearchTable(props) {
   const getRenderColumn = (time) => {
 
     const renderColumn = (rowData) => {
-      console.log(rowData)
+      // console.log(rowData)
       let ratio = Math.floor((Number(rowData[time]) / Number(rowData.capacity)) * 100)
       ratio = ratio ? ratio : 0
       let render = undefined

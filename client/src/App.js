@@ -23,6 +23,7 @@ import timeseries from './timeseries.json';
 import { dataLayer } from './map-style.js';
 import SearchTable from "./components/SearchTable"
 import BarChart from 'react-bar-chart';
+import axios from "axios";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -64,13 +65,6 @@ function App() {
 
   const classes = useStyles();
 
-  // bar chart data
-  const margin = {top: 20, right: 20, bottom: 30, left: 40};
-  const data = [
-    {text: 'Man', value: 500}, 
-    {text: 'Woman', value: 300} 
-  ];
-
   const [state, setState] = useState({
     stores: [],
     members: [],
@@ -78,8 +72,27 @@ function App() {
     data: null,
     hoveredFeature: null,
     x: null,
-    y: null
+    y: null,
+    barChartData: []
   })
+
+  useEffect(() => {
+    axios.get("/vendors")
+      .then(res => res.data)
+      .then(res => {
+        let barChartData = res
+        barChartData.map((i) => {
+          return {
+            time: i.visiting_hour,
+            totalReservedSpots: i.reserved_spots,
+            vendorName: i.name
+          }
+        }, [])
+        const columns = ["Time", "TotalReservedSpots", "vendorName"]
+        setState(prev => ({ ...prev, ...{ barChartData, columns } }))
+      })
+      .catch(err => err);
+  }, [])
 
   const [viewport, setViewport] = useState({
     width: '40%',
@@ -193,7 +206,7 @@ function App() {
       <Container maxWidth={false}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <AppBar position="static" safe flex style={{ backgroundColor:'white' }}>
+            <AppBar position="static" safe flex style={{ backgroundColor: 'white' }}>
               <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
                   <MenuIcon />
@@ -251,11 +264,13 @@ function App() {
           <Grid item xs={3} />
 
           <Grid item xs={12}>
-          <div style={{width: '100%'}}> 
-                <BarChart ylabel='Reserved Spots'
-                  height={400}
-                  width={400}
-                  data={data}/>
+            <div style={{ width: '100%' }}>
+              <BarChart ylabel='Reserved Spots'
+                height={400}
+                width={400}
+                data={state.barChartData.map((item) => {
+                  return {"text": item.visiting_hour, "value": item.reserved_spots}
+                })} />
             </div>
           </Grid>
           <Grid item xs={6} />
@@ -264,4 +279,5 @@ function App() {
     </React.Fragment>
   );
 }
+
 export default App;
