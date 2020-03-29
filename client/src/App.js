@@ -200,6 +200,7 @@ function App() {
     );
   }
 
+  const margin = {top: 20, right: 20, bottom: 30, left: 40};
   return (
     <React.Fragment>
       <CssBaseline />
@@ -268,6 +269,7 @@ function App() {
               <BarChart ylabel='Reserved Spots'
                 height={400}
                 width={400}
+                margin={margin}
                 data={state.barChartData.map((item) => {
                   return {"text": item.visiting_hour, "value": item.reserved_spots}
                 })} />
