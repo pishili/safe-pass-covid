@@ -11,15 +11,16 @@ const pool = new Pool({
 })
 
 router.get("/", (req, res) => {
-  const vendor_id = req.body.vendor_id
-  console.log(vendor_id)
-  
+  const vendorName = req.body.vendorName
+  console.log(vendorName)
+
 
   return pool.query(`
-    SELECT vendor_id, vendors.name, COUNT(customer_id) as reserved_spots, reservations.visiting_hour, store_id FROM stores
-    JOIN vendors ON vendors.id = stores.vendor_id
-    JOIN reservations ON reservations.store_id = stores.id
-    GROUP BY vendor_id, name, reservations.store_id, reservations.visiting_hour;
+  SELECT vendor_id, vendors.name, COUNT(customer_id) as reserved_spots, reservations.visiting_hour, store_id FROM stores
+	JOIN vendors ON vendors.id = stores.vendor_id
+  JOIN reservations ON reservations.store_id = stores.id
+  WHERE vendors.name = 'IGA'
+  GROUP BY vendor_id, name, reservations.store_id, reservations.visiting_hour;
   `,
     [])
     .then(vendors => {
@@ -30,6 +31,6 @@ router.get("/", (req, res) => {
       console.error('query error', err.stack)
       res.send("ERROR");
     });
-  })
+})
 
 module.exports = router;
