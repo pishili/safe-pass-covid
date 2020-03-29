@@ -13,16 +13,16 @@ const pool = new Pool({
 router.get("/", (req, res) => {
   const vendorName = req.body.vendorName
   console.log(vendorName)
-
+  console.log('yaya')
 
   return pool.query(`
   SELECT vendor_id, vendors.name, COUNT(customer_id) as reserved_spots, reservations.visiting_hour, store_id FROM stores
 	JOIN vendors ON vendors.id = stores.vendor_id
   JOIN reservations ON reservations.store_id = stores.id
-  WHERE vendors.name = 'IGA'
+  WHERE vendors.name = $1::VARCHAR
   GROUP BY vendor_id, name, reservations.store_id, reservations.visiting_hour;
   `,
-    [])
+    [vendorName])
     .then(vendors => {
       console.log(vendors.rows)
       res.send(vendors.rows)
