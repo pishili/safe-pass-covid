@@ -21,7 +21,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import countriesGeojson from './countries.geo.json'
 import timeseries from './timeseries.json';
 import { dataLayer } from './map-style.js';
-import { AddBox, ArrowDownward } from "@material-ui/icons";
 import SearchTable from "./components/SearchTable"
 
 const StyledTableCell = withStyles(theme => ({
