@@ -5,7 +5,8 @@ import NotInterested from '@material-ui/icons/NotInterested';
 import IconButton from '@material-ui/core/IconButton';
 import { green, red, yellow } from '@material-ui/core/colors';
 import axios from 'axios';
-
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
 export default function SearchTable(props) {
 
   const [state, setState] = useState({
@@ -31,9 +32,8 @@ export default function SearchTable(props) {
       visiting_day: 90,
       visiting_hour: time
     })
-    .catch((err) => console.error(err))
+      .catch((err) => console.error(err))
   }
-
 
   useEffect(() => {
     setState((prev) => ({ ...prev, ...{ isLoading: true } }))
@@ -72,8 +72,6 @@ export default function SearchTable(props) {
     return style
   }
 
-
-
   const getRenderColumn = (time) => {
 
     const renderColumn = (rowData) => {
@@ -84,16 +82,21 @@ export default function SearchTable(props) {
       if (ratio < 50) {
         render = (
           <div>
-            <IconButton color="inherit" aria-label="add" onClick={() => {callAPIReservations(time, rowData.storeId)}}>
-              <AddCircleOutline style={{fill: green['700']}} />
+            <IconButton color="inherit" aria-label="add" onClick={() => {
+              callAPIReservations(time, rowData.storeId)
+            }
+            }>
+              <AddCircleOutline style={{ fill: green['700'] }} />
             </IconButton>
           </div>
         )
       } else if (ratio < 99) {
         render = (
           <div>
-            <IconButton color="primary" aria-label="add" onClick={() => {callAPIReservations(time, rowData.storeId)}}>
-              <AddCircleOutline style={{fill: yellow['800']}}/>
+            <IconButton color="primary" aria-label="add" onClick={() => {
+              callAPIReservations(time, rowData.storeId)
+            }}>
+              <AddCircleOutline style={{ fill: yellow['800'] }} />
             </IconButton>
           </div>
         )
@@ -101,7 +104,7 @@ export default function SearchTable(props) {
         render = (
           <div>
             <IconButton disabled color="secondary" aria-label="add">
-              <NotInterested style={{fill: red['700']}}/>
+              <NotInterested style={{ fill: red['700'] }} />
             </IconButton>
           </div>
         )
@@ -123,7 +126,7 @@ export default function SearchTable(props) {
     { title: '9 AM', field: '9 AM', cellStyle: cellStyle, render: getRenderColumn('9 AM') },
     { title: '10 AM', field: '10 AM', cellStyle: cellStyle, render: getRenderColumn('10 AM') },
     { title: '11 AM', field: '11 AM', cellStyle: cellStyle, render: getRenderColumn('11 AM') },
-    { title: '12 PM', field: '12 AM', cellStyle: cellStyle, render: getRenderColumn('12 PM')},
+    { title: '12 PM', field: '12 AM', cellStyle: cellStyle, render: getRenderColumn('12 PM') },
     { title: '1 PM', field: '1 PM', cellStyle: cellStyle, render: getRenderColumn('1 PM') },
     { title: '2 PM', field: '2 PM', cellStyle: cellStyle, render: getRenderColumn('2 PM') },
     { title: '3 PM', field: '3 PM', cellStyle: cellStyle, render: getRenderColumn('3 PM') },

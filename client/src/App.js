@@ -185,7 +185,7 @@ function App() {
       <Container maxWidth={false}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <AppBar position="static" style={{ backgroundColor: 'black' }}>
+            <AppBar position="static" safe flex style={{ backgroundColor:'white' }}>
               <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
                   <MenuIcon />
