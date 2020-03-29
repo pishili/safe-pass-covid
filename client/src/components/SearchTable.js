@@ -4,6 +4,7 @@ import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import NotInterested from '@material-ui/icons/NotInterested';
 import IconButton from '@material-ui/core/IconButton';
 import { green, red, yellow } from '@material-ui/core/colors';
+import axios from 'axios';
 
 export default function SearchTable(props) {
 
@@ -23,6 +24,17 @@ export default function SearchTable(props) {
       .catch(err => err);
   }
 
+  const callAPIReservations = (time, storeId) => {
+    axios.post("/reservations", {
+      customer_id: 8,
+      store_id: storeId,
+      visiting_day: 90,
+      visiting_hour: time
+    })
+    .catch((err) => console.error(err))
+  }
+
+
   useEffect(() => {
     setState((prev) => ({ ...prev, ...{ isLoading: true } }))
     setTimeout(() => {
@@ -35,6 +47,7 @@ export default function SearchTable(props) {
     const newListData = []
     for (let element in data) {
       const newData = {}
+      newData["storeId"] = data[element].store_id
       newData["name"] = data[element].name
       newData["location"] = data[element].location
       newData["capacity"] = data[element].capacity
@@ -59,16 +72,19 @@ export default function SearchTable(props) {
     return style
   }
 
+
+
   const getRenderColumn = (time) => {
 
     const renderColumn = (rowData) => {
+      console.log(rowData)
       let ratio = Math.floor((Number(rowData[time]) / Number(rowData.capacity)) * 100)
       ratio = ratio ? ratio : 0
       let render = undefined
       if (ratio < 50) {
         render = (
           <div>
-            <IconButton color="inherit" aria-label="add" onClick={() => {alert('yay')}}>
+            <IconButton color="inherit" aria-label="add" onClick={() => {callAPIReservations(time, rowData.storeId)}}>
               <AddCircleOutline style={{fill: green['700']}} />
             </IconButton>
           </div>
