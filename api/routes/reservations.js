@@ -15,10 +15,6 @@ router.post("/", (req, res) => {
   const store_id = req.body.store_id
   const visiting_day = req.body.visiting_day
   const visiting_hour = req.body.visiting_hour
-  console.log(customer_id)
-  console.log(store_id)
-  console.log(visiting_day)
-  console.log(visiting_hour)
 
   return pool.query(`
     INSERT INTO reservations (customer_id, store_id, visiting_day, visiting_hour)
@@ -26,8 +22,6 @@ router.post("/", (req, res) => {
   `,
     [customer_id, store_id, visiting_day, visiting_hour])
     .then(reservations => {
-      console.log('yayayayya')
-      // console.log(reservations)
       res.send(reservations.rows)
     })
     .catch(err => {
