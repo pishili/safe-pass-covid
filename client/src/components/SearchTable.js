@@ -92,7 +92,7 @@ export default function SearchTable(props) {
       } else if (ratio < 99) {
         render = (
           <div>
-            <IconButton color="primary" aria-label="add" onClick={() => {alert('no')}}>
+            <IconButton color="primary" aria-label="add" onClick={() => {callAPIReservations(time, rowData.storeId)}}>
               <AddCircleOutline style={{fill: yellow['800']}}/>
             </IconButton>
           </div>
