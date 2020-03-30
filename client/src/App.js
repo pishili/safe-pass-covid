@@ -73,29 +73,37 @@ function App() {
     hoveredFeature: null,
     x: null,
     y: null,
-    barChartData: []
+    barChartData: [],
+    selectedVendor: "IGA",
+    vendorId: 1
   })
 
+
   useEffect(() => {
-    axios.get("/vendors")
+    axios.get(`/vendors/${state.vendorId}`)
       .then(res => res.data)
       .then(res => {
+        console.log(res)
         let barChartData = res
+        console.log(barChartData)
         barChartData.map((i) => {
           return {
             time: i.visiting_hour,
-            totalReservedSpots: i.reserved_spots,
-            vendorName: i.name
+            totalReservedSpots: i.reserved_spots
           }
         }, [])
-        const columns = ["Time", "TotalReservedSpots", "vendorName"]
+        const columns = ["Time", "TotalReservedSpots"]
         setState(prev => ({ ...prev, ...{ barChartData, columns } }))
       })
-      .catch(err => err);
-  }, [])
+      .catch((err) => {
+        console.log(err.response.status);
+        console.log(err.response.headers);
+        console.log(err.response.data);
+      });
+  }, [state.selectedVendor])
 
   const [viewport, setViewport] = useState({
-    width: '40%',
+    width: '100%',
     borderRadius: 10,
     alignItems: 'right',
     height: 600,
@@ -200,7 +208,7 @@ function App() {
     );
   }
 
-  const margin = {top: 20, right: 20, bottom: 30, left: 40};
+  const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   return (
     <React.Fragment>
       <CssBaseline />
@@ -220,7 +228,7 @@ function App() {
             </AppBar>
           </Grid>
           <Grid item xs={1} />
-          <Grid container item xs={10} justify="center" text-align="right" padding-top="100px">
+          <Grid container item xs={10} justify="center" text-align="right" padding-top="50px">
             <MapGL
               {...viewport}
               mapStyle="mapbox://styles/mapbox/dark-v10"
@@ -271,7 +279,7 @@ function App() {
                 width={400}
                 margin={margin}
                 data={state.barChartData.map((item) => {
-                  return {"text": item.visiting_hour, "value": item.reserved_spots}
+                  return { "text": item.visiting_hour, "value": item.reserved_spots }
                 })} />
             </div>
           </Grid>
