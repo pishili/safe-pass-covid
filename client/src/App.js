@@ -24,6 +24,8 @@ import { dataLayer } from './map-style.js';
 import SearchTable from "./components/SearchTable"
 import BarChart from 'react-bar-chart';
 import axios from "axios";
+import { DropdownMenu, MenuItem } from 'react-bootstrap-dropdown-menu';
+import 'react-dropdown/style.css';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -63,6 +65,10 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
 
+  const options = [
+    'one', 'two', 'three'
+  ];
+
   const classes = useStyles();
 
   const [state, setState] = useState({
@@ -75,8 +81,19 @@ function App() {
     y: null,
     barChartData: [],
     selectedVendor: "IGA",
-    vendorId: 1
+    vendorId: 1,
+    selection: 1
   })
+
+  const deleteAccount = (e) => {
+    console.log("Deleting Account")
+  }
+
+  const logout = (e) => {
+    console.log("Logging out")
+  }
+
+  // const [vendorId, setVendorId] = useState(1);
 
 
   useEffect(() => {
@@ -209,6 +226,7 @@ function App() {
   }
 
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -272,18 +290,30 @@ function App() {
           </Grid>
           <Grid item xs={3} />
 
-          <Grid item xs={12}>
+          <Grid item xs={3} />
+          <Grid item xs={6}>
             <div style={{ width: '100%' }}>
               <BarChart ylabel='Reserved Spots'
-                height={400}
-                width={400}
+                color='#b0120a'
+                height={500}
+                width={800}
                 margin={margin}
+
                 data={state.barChartData.map((item) => {
                   return { "text": item.visiting_hour, "value": item.reserved_spots }
                 })} />
             </div>
           </Grid>
-          <Grid item xs={6} />
+          <Grid item xs={3}>
+            <DropdownMenu userName="Chris Smith">
+              <MenuItem text="Home" location="/home" />
+              <MenuItem text="Edit Profile" location="/profile" />
+              <MenuItem text="Change Password" location="/change-password" />
+              <MenuItem text="Privacy Settings" location="/privacy-settings" />
+              <MenuItem text="Delete Account" onClick={deleteAccount} />
+              <MenuItem text="Logout" onClick={logout} />
+            </DropdownMenu>
+          </Grid>
         </Grid>
       </Container>
     </React.Fragment>
