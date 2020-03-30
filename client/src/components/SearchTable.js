@@ -11,7 +11,8 @@ export default function SearchTable(props) {
 
   const [state, setState] = useState({
     tableData: [],
-    isLoading: false
+    isLoading: false,
+    updateCount: 0
   })
 
   const callAPIStores = () => {
@@ -33,7 +34,7 @@ export default function SearchTable(props) {
       visiting_hour: time
     })
       .then(() => {
-        alert("Reserved")
+        setState(prev => ({ ...prev, ...{ updateCount: prev.updateCount + 1, } }))
       })
       .catch((err) => console.error(err))
   }
@@ -44,7 +45,7 @@ export default function SearchTable(props) {
       callAPIStores()
     }, 2000);
 
-  }, [])
+  }, [state.updateCount])
 
   const mapper = (data) => {
     const newListData = []

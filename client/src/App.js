@@ -251,12 +251,12 @@ function App() {
             </MapGL>
           </Grid>
           <Grid item xs={1} />
-          <Grid item xs={3} />
-          <Grid item xs={6}>
+          <Grid item xs={2} />
+          <Grid item xs={8}>
             <SearchTable
             />
           </Grid>
-          <Grid item xs={3} />
+          <Grid item xs={2} />
 
           <Grid item xs={3} />
           <Grid item xs={6}>
