@@ -32,6 +32,9 @@ export default function SearchTable(props) {
       visiting_day: 90,
       visiting_hour: time
     })
+      .then(() => {
+        alert("Reserved")
+      })
       .catch((err) => console.error(err))
   }
 

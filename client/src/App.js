@@ -25,6 +25,8 @@ import SearchTable from "./components/SearchTable"
 import BarChart from 'react-bar-chart';
 import axios from "axios";
 import { DropdownMenu, MenuItem } from 'react-bootstrap-dropdown-menu';
+import LocalPharmacy from '@material-ui/icons/LocalPharmacy';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import 'react-dropdown/style.css';
 
 const StyledTableCell = withStyles(theme => ({
@@ -80,29 +82,15 @@ function App() {
     x: null,
     y: null,
     barChartData: [],
-    selectedVendor: "IGA",
     vendorId: 1,
     selection: 1
   })
-
-  const deleteAccount = (e) => {
-    console.log("Deleting Account")
-  }
-
-  const logout = (e) => {
-    console.log("Logging out")
-  }
-
-  // const [vendorId, setVendorId] = useState(1);
-
 
   useEffect(() => {
     axios.get(`/vendors/${state.vendorId}`)
       .then(res => res.data)
       .then(res => {
-        console.log(res)
         let barChartData = res
-        console.log(barChartData)
         barChartData.map((i) => {
           return {
             time: i.visiting_hour,
@@ -117,7 +105,7 @@ function App() {
         console.log(err.response.headers);
         console.log(err.response.data);
       });
-  }, [state.selectedVendor])
+  }, [state.vendorId])
 
   const [viewport, setViewport] = useState({
     width: '100%',
@@ -236,12 +224,14 @@ function App() {
             <AppBar position="static" safe flex style={{ backgroundColor: 'white' }}>
               <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
-                  <MenuIcon />
+                  <LocalPharmacy fontSize="large"/>
                 </IconButton>
-                <Typography variant="h6" className={classes.title} color="textSecondary">
+                <Typography variant="h4" className={classes.title} color="textSecondary">
                   SafePass
                 </Typography>
-                <Button style={{ backgroundColor: 'white' }}>Login</Button>
+                <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
+                  <AccountCircle fontSize="large"/>
+                </IconButton>
               </Toolbar>
             </AppBar>
           </Grid>
@@ -263,28 +253,6 @@ function App() {
           <Grid item xs={1} />
           <Grid item xs={3} />
           <Grid item xs={6}>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    {state.columns.map(col => <StyledTableCell>{col}</StyledTableCell>)}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {state.members.map(row => (
-                    <TableRow>
-                      <StyledTableCell>{row.name}</StyledTableCell>
-                      <StyledTableCell>{row.age}</StyledTableCell>
-                      <StyledTableCell>{row.location}</StyledTableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item xs={3} />
-          <Grid item xs={3} />
-          <Grid item xs={6}>
             <SearchTable
             />
           </Grid>
@@ -296,7 +264,7 @@ function App() {
               <BarChart ylabel='Reserved Spots'
                 color='#b0120a'
                 height={500}
-                width={800}
+                width={700}
                 margin={margin}
 
                 data={state.barChartData.map((item) => {
@@ -305,19 +273,45 @@ function App() {
             </div>
           </Grid>
           <Grid item xs={3}>
-            <DropdownMenu userName="Chris Smith">
-              <MenuItem text="Home" location="/home" />
-              <MenuItem text="Edit Profile" location="/profile" />
-              <MenuItem text="Change Password" location="/change-password" />
-              <MenuItem text="Privacy Settings" location="/privacy-settings" />
-              <MenuItem text="Delete Account" onClick={deleteAccount} />
-              <MenuItem text="Logout" onClick={logout} />
+            <DropdownMenu userName="Sonia Mobahi">
+              <MenuItem text="Costco"  onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 1 } }))
+              }}
+              />
+              <MenuItem text="Safeway" onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 2 } }))
+              }}
+              />
+              <MenuItem text="IGA" onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 3 } }))
+              }}
+              />
+              <MenuItem text="SaveOnFood" onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 4 } }))
+              }}
+              />
+              {/* <MenuItem text="Wallmart" onClick={deleteAccount} onClick={() => {
+                setState({ vendorId: 5 })
+              }}
+              />
+              <MenuItem text="Persia" onClick={logout} onClick={() => {
+                setState({ vendorId: 6 })
+              }}
+              />
+              <MenuItem text="ChineeseMarket" onClick={logout} onClick={() => {
+                setState({ vendorId: 7 })
+              }}
+              />
+              <MenuItem text="DollarStore" onClick={logout} onClick={() => {
+                setState({ vendorId: 8 })
+              }}
+              /> */}
             </DropdownMenu>
           </Grid>
         </Grid>
       </Container>
     </React.Fragment>
-  );
-}
-
-export default App;
+                    );
+                  }
+                  
+                  export default App;
