@@ -290,22 +290,22 @@ function App() {
                 setState(prev => ({ ...prev, ...{ vendorId: 4 } }))
               }}
               />
-              {/* <MenuItem text="Wallmart" onClick={deleteAccount} onClick={() => {
-                setState({ vendorId: 5 })
+              <MenuItem text="Wallmart" onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 5 } }))
               }}
               />
-              <MenuItem text="Persia" onClick={logout} onClick={() => {
-                setState({ vendorId: 6 })
+              <MenuItem text="Persia" onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 6 } }))
               }}
               />
-              <MenuItem text="ChineeseMarket" onClick={logout} onClick={() => {
-                setState({ vendorId: 7 })
+              <MenuItem text="ChineeseMarket" onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 7 } }))
               }}
               />
-              <MenuItem text="DollarStore" onClick={logout} onClick={() => {
-                setState({ vendorId: 8 })
+              <MenuItem text="DollarStore" onClick={() => {
+                setState(prev => ({ ...prev, ...{ vendorId: 8 } }))
               }}
-              /> */}
+              />
             </DropdownMenu>
           </Grid>
         </Grid>
