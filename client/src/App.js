@@ -28,6 +28,33 @@ import { DropdownMenu, MenuItem } from 'react-bootstrap-dropdown-menu';
 import LocalPharmacy from '@material-ui/icons/LocalPharmacy';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import 'react-dropdown/style.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Menu from '@material-ui/core/Menu';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MUIMenuItem from '@material-ui/core/MenuItem';
+
+
+const options = [
+  'None',
+  'Atria',
+  'Callisto',
+  'Dione',
+  'Ganymede',
+  'Hangouts Call',
+  'Luna',
+  'Oberon',
+  'Phobos',
+  'Pyxis',
+  'Sedna',
+  'Titania',
+  'Triton',
+  'Umbriel',
+];
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -66,10 +93,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-
-  const options = [
-    'one', 'two', 'three'
-  ];
 
   const classes = useStyles();
 
@@ -213,105 +236,170 @@ function App() {
     );
   }
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   return (
     <React.Fragment>
       <CssBaseline />
+      <Router>
       <Container maxWidth={false}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <AppBar position="static" safe flex style={{ backgroundColor: 'white' }}>
+            <AppBar position="static" style={{ backgroundColor: 'white' }}>
               <Toolbar>
+                <IconButton
+                  aria-label="more"
+                  aria-controls="long-menu"
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+                <Menu
+                  id="fade-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={open}
+                  onClose={handleClose}
+                // TransitionComponent={Fade}
+                >
+                  <MUIMenuItem onClick={handleClose}>
+                    <Link to="/users">
+                      Users
+                    </Link>
+                  </MUIMenuItem>
+                  <MUIMenuItem onClick={handleClose}>
+                  <Link to="/vendors">
+                      Vendors
+                    </Link>
+                  </MUIMenuItem>
+                  <MUIMenuItem onClick={handleClose}>
+                  <Link to="/news">
+                      News
+                    </Link>
+                  </MUIMenuItem>
+                </Menu>
                 <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
-                  <LocalPharmacy fontSize="large"/>
+                  <LocalPharmacy fontSize="large" />
                 </IconButton>
                 <Typography variant="h4" className={classes.title} color="textSecondary">
                   SafePass
                 </Typography>
                 <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
-                  <AccountCircle fontSize="large"/>
+                  <AccountCircle fontSize="large" />
                 </IconButton>
               </Toolbar>
             </AppBar>
           </Grid>
-          <Grid item xs={1} />
-          <Grid container item xs={10} justify="center" text-align="right" padding-top="50px">
-            <MapGL
-              {...viewport}
-              mapStyle="mapbox://styles/mapbox/dark-v10"
-              onViewportChange={setViewport}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-              onHover={onHover}
-            >
-              <Source type="geojson" data={state.data}>
-                <Layer {...dataLayer} />
-              </Source>
-              {renderTooltip()}
-            </MapGL>
-          </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={2} />
-          <Grid item xs={8}>
-            <SearchTable
-            />
-          </Grid>
-          <Grid item xs={2} />
-
-          <Grid item xs={3} />
-          <Grid item xs={6}>
-            <div style={{ width: '100%' }}>
-              <BarChart ylabel='Reserved Spots'
-                color='#b0120a'
-                height={500}
-                width={700}
-                margin={margin}
-
-                data={state.barChartData.map((item) => {
-                  return { "text": item.visiting_hour, "value": item.reserved_spots }
-                })} />
-            </div>
-          </Grid>
-          <Grid item xs={3}>
-            <DropdownMenu userName="Sonia Mobahi">
-              <MenuItem text="Costco"  onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 1 } }))
-              }}
-              />
-              <MenuItem text="Safeway" onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 2 } }))
-              }}
-              />
-              <MenuItem text="IGA" onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 3 } }))
-              }}
-              />
-              <MenuItem text="SaveOnFood" onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 4 } }))
-              }}
-              />
-              <MenuItem text="Wallmart" onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 5 } }))
-              }}
-              />
-              <MenuItem text="Persia" onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 6 } }))
-              }}
-              />
-              <MenuItem text="ChineeseMarket" onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 7 } }))
-              }}
-              />
-              <MenuItem text="DollarStore" onClick={() => {
-                setState(prev => ({ ...prev, ...{ vendorId: 8 } }))
-              }}
-              />
-            </DropdownMenu>
-          </Grid>
         </Grid>
+
+        
+          <Switch>
+
+            <Route path="/news">
+              <Grid container spacing={6}>
+                <Grid item xs={1} />
+                <Grid container item xs={10} justify="center" text-align="right" padding-top="50px">
+                  <MapGL
+                    {...viewport}
+                    mapStyle="mapbox://styles/mapbox/dark-v10"
+                    onViewportChange={setViewport}
+                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+                    onHover={onHover}
+                  >
+                    <Source type="geojson" data={state.data}>
+                      <Layer {...dataLayer} />
+                    </Source>
+                    {renderTooltip()}
+                  </MapGL>
+                </Grid>
+                <Grid item xs={1} />
+              </Grid>
+            </Route>
+
+            <Route path="/users">
+              <Grid container spacing={6}>
+                <Grid item xs={2} />
+                <Grid item xs={8}>
+                  <SearchTable
+                  />
+                </Grid>
+                <Grid item xs={2} />
+              </Grid>
+            </Route>
+
+            <Route path="/vendors">
+              <Grid container spacing={6}>
+                <Grid item xs={3} />
+                <Grid item xs={6}>
+                  <div style={{ width: '100%' }}>
+                    <BarChart ylabel='Reserved Spots'
+                      color='#b0120a'
+                      height={500}
+                      width={700}
+                      margin={margin}
+
+                      data={state.barChartData.map((item) => {
+                        return { "text": item.visiting_hour, "value": item.reserved_spots }
+                      })} />
+                  </div>
+                </Grid>
+                <Grid item xs={3}>
+                  <DropdownMenu userName="Sonia Mobahi">
+                    <MenuItem text="Costco" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 1 } }))
+                    }}
+                    />
+                    <MenuItem text="Safeway" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 2 } }))
+                    }}
+                    />
+                    <MenuItem text="IGA" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 3 } }))
+                    }}
+                    />
+                    <MenuItem text="SaveOnFood" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 4 } }))
+                    }}
+                    />
+                    <MenuItem text="Wallmart" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 5 } }))
+                    }}
+                    />
+                    <MenuItem text="Persia" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 6 } }))
+                    }}
+                    />
+                    <MenuItem text="ChineeseMarket" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 7 } }))
+                    }}
+                    />
+                    <MenuItem text="DollarStore" onClick={() => {
+                      setState(prev => ({ ...prev, ...{ vendorId: 8 } }))
+                    }}
+                    />
+                  </DropdownMenu>
+                </Grid>
+              </Grid>
+            </Route>
+
+          </Switch>
+
       </Container>
+      </Router>
     </React.Fragment>
-                    );
-                  }
-                  
-                  export default App;
+  );
+}
+
+export default App;
