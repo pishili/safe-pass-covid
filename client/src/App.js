@@ -37,6 +37,7 @@ import {
 import Menu from '@material-ui/core/Menu';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MUIMenuItem from '@material-ui/core/MenuItem';
+import Vendors from './components/Vendors'
 
 
 const options = [
@@ -341,6 +342,11 @@ function App() {
 
             <Route path="/vendors">
               <Grid container spacing={6}>
+              <Grid item xs={3} />
+              <Grid item xs={6}>
+                <Vendors />
+              </Grid>
+              <Grid item xs={3} />
                 <Grid item xs={3} />
                 <Grid item xs={6}>
                   <div style={{ width: '100%' }}>

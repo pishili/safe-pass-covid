@@ -140,7 +140,7 @@ export default function SearchTable(props) {
   ]
 
   return (
-    // <div style={{ maxWidth: "100%" }}>
+    <div style={{ maxWidth: "100%" }}>
       <MaterialTable
         columns={columns}
         data={state.tableData}
@@ -152,6 +152,6 @@ export default function SearchTable(props) {
           filtering: true
         }}
       />
-    // </div>
+    </div>
   )
 }
