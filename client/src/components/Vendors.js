@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import axios from "axios";
 import { DropdownMenu, MenuItem } from 'react-bootstrap-dropdown-menu';
+import VendorTable from './VendorTable'
 
 
 export default function Vendors(props) {
@@ -15,7 +16,7 @@ export default function Vendors(props) {
 
   const [state, setState] = useState({
     barChartData: [],
-    vendorId: 1
+    vendorId: 3
   })
 
   useEffect(() => {
@@ -41,7 +42,9 @@ export default function Vendors(props) {
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={7} />
+      <Grid item xs={7}>
+        <VendorTable vendorId={state.vendorId} />
+      </Grid>
       <Grid item xs={3}>
         <BarChart
           width={400}
