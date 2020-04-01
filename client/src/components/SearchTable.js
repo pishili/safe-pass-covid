@@ -43,7 +43,7 @@ export default function SearchTable(props) {
     setState((prev) => ({ ...prev, ...{ isLoading: true } }))
     setTimeout(() => {
       callAPIStores()
-    }, 2000);
+    }, 500);
 
   }, [state.updateCount])
 
