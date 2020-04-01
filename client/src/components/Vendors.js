@@ -27,23 +27,26 @@ const data = [
   },
 ];
 export default function Vendors(props) {
+  const {
+    data
+  } = props;
 
   return (
     <BarChart
-      width={500}
-      height={300}
+      width={700}
+      height={450}
       data={data}
       margin={{
         top: 5, right: 30, left: 20, bottom: 5,
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey="text" />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="pv" fill="#8884d8" />
-      <Bar dataKey="uv" fill="#82ca9d" />
+      <Bar dataKey="value" fill="#468499"/>
+      
     </BarChart>
   )
 }

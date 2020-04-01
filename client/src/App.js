@@ -39,7 +39,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MUIMenuItem from '@material-ui/core/MenuItem';
 import Vendors from './components/Vendors'
 
-
 const options = [
   'None',
   'Atria',
@@ -222,6 +221,7 @@ function App() {
     const hoveredFeature = features && features.find(f => f.layer.id === 'data');
 
     setState(prev => ({ ...prev, ...{ hoveredFeature, x: offsetX, y: offsetY } }));
+    setState(prev => ({ ...prev, ...{ hoveredFeature, x: offsetX, y: offsetY } }));
   };
 
   const renderTooltip = () => {
@@ -344,24 +344,13 @@ function App() {
               <Grid container spacing={6}>
               <Grid item xs={3} />
               <Grid item xs={6}>
-                <Vendors />
+                <Vendors
+                data={state.barChartData.map((item) => {
+                  return { "text": item.visiting_hour, "value": item.reserved_spots }
+                })}
+                />
               </Grid>
-              <Grid item xs={3} />
-                <Grid item xs={3} />
-                <Grid item xs={6}>
-                  <div style={{ width: '100%' }}>
-                    <BarChart ylabel='Reserved Spots'
-                      color='#b0120a'
-                      height={500}
-                      width={700}
-                      margin={margin}
-
-                      data={state.barChartData.map((item) => {
-                        return { "text": item.visiting_hour, "value": item.reserved_spots }
-                      })} />
-                  </div>
-                </Grid>
-                <Grid item xs={3}>
+              <Grid item xs={3}>
                   <DropdownMenu userName="Sonia Mobahi">
                     <MenuItem text="Costco" onClick={() => {
                       setState(prev => ({ ...prev, ...{ vendorId: 1 } }))
@@ -397,6 +386,7 @@ function App() {
                     />
                   </DropdownMenu>
                 </Grid>
+                
               </Grid>
             </Route>
 

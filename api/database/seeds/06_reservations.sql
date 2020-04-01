@@ -140,7 +140,7 @@
     VALUES (
     3, 6, 90, '9 AM');
     INSERT INTO reservations (
-    34,) 
+    customer_id, store_id, visiting_day, visiting_hour)
     VALUES (
     7, 6, 90, '9 AM');
     INSERT INTO reservations (
