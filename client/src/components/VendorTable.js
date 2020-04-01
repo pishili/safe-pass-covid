@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from "material-table";
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+import Battery20 from '@material-ui/icons/Battery20';
+import Battery80 from '@material-ui/icons/Battery80'
+import BatteryFull from '@material-ui/icons/BatteryFull'
 import NotInterested from '@material-ui/icons/NotInterested';
 import IconButton from '@material-ui/core/IconButton';
 import { green, red, yellow } from '@material-ui/core/colors';
@@ -89,30 +92,19 @@ export default function VendorTable(props) {
       if (ratio < 50) {
         render = (
           <div>
-            <IconButton color="inherit" aria-label="add" onClick={() => {
-              callAPIReservations(time, rowData.storeId)
-            }
-            }>
-              <AddCircleOutline style={{ fill: green['700'] }} />
-            </IconButton>
+            <Battery20 style={{ fill: green['700'] }} />
           </div>
         )
       } else if (ratio < 99) {
         render = (
           <div>
-            <IconButton color="primary" aria-label="add" onClick={() => {
-              callAPIReservations(time, rowData.storeId)
-            }}>
-              <AddCircleOutline style={{ fill: yellow['800'] }} />
-            </IconButton>
+            <Battery80 style={{ fill: yellow['800'] }} />
           </div>
         )
       } else {
         render = (
           <div>
-            <IconButton disabled color="secondary" aria-label="add">
-              <NotInterested style={{ fill: red['700'] }} />
-            </IconButton>
+            <BatteryFull style={{ fill: red['700'] }} />
           </div>
         )
       }
@@ -128,18 +120,18 @@ export default function VendorTable(props) {
       cellStyle: cellStyle
     },
     { title: "Location", field: "location" },
-    { title: "Capacity", field: "capacity" },
-    { title: '8 AM', field: '8 AM', cellStyle: cellStyle, render: getRenderColumn('8 AM') },
-    { title: '9 AM', field: '9 AM', cellStyle: cellStyle, render: getRenderColumn('9 AM') },
-    { title: '10 AM', field: '10 AM', cellStyle: cellStyle, render: getRenderColumn('10 AM') },
-    { title: '11 AM', field: '11 AM', cellStyle: cellStyle, render: getRenderColumn('11 AM') },
-    { title: '12 PM', field: '12 AM', cellStyle: cellStyle, render: getRenderColumn('12 PM') },
-    { title: '1 PM', field: '1 PM', cellStyle: cellStyle, render: getRenderColumn('1 PM') },
-    { title: '2 PM', field: '2 PM', cellStyle: cellStyle, render: getRenderColumn('2 PM') },
-    { title: '3 PM', field: '3 PM', cellStyle: cellStyle, render: getRenderColumn('3 PM') },
-    { title: '4 PM', field: '4 PM', cellStyle: cellStyle, render: getRenderColumn('4 PM') },
-    { title: '5 PM', field: '5 PM', cellStyle: cellStyle, render: getRenderColumn('5 PM') },
-    { title: '6 PM', field: '6 PM', cellStyle: cellStyle, render: getRenderColumn('6 PM') }
+    { title: "Capacity", field: "capacity", filtering: false },
+    { title: '8 AM', field: '8 AM', cellStyle: cellStyle, render: getRenderColumn('8 AM'), filtering: false },
+    { title: '9 AM', field: '9 AM', cellStyle: cellStyle, render: getRenderColumn('9 AM'), filtering: false },
+    { title: '10 AM', field: '10 AM', cellStyle: cellStyle, render: getRenderColumn('10 AM'), filtering: false },
+    { title: '11 AM', field: '11 AM', cellStyle: cellStyle, render: getRenderColumn('11 AM'), filtering: false },
+    { title: '12 PM', field: '12 AM', cellStyle: cellStyle, render: getRenderColumn('12 PM'), filtering: false },
+    { title: '1 PM', field: '1 PM', cellStyle: cellStyle, render: getRenderColumn('1 PM'), filtering: false },
+    { title: '2 PM', field: '2 PM', cellStyle: cellStyle, render: getRenderColumn('2 PM'), filtering: false },
+    { title: '3 PM', field: '3 PM', cellStyle: cellStyle, render: getRenderColumn('3 PM'), filtering: false },
+    { title: '4 PM', field: '4 PM', cellStyle: cellStyle, render: getRenderColumn('4 PM'), filtering: false },
+    { title: '5 PM', field: '5 PM', cellStyle: cellStyle, render: getRenderColumn('5 PM'), filtering: false },
+    { title: '6 PM', field: '6 PM', cellStyle: cellStyle, render: getRenderColumn('6 PM'), filtering: false }
   ]
 
   return (
@@ -152,7 +144,10 @@ export default function VendorTable(props) {
         options={{
           padding: "dense",
           exportButton: true,
-          filtering: true
+          filtering: true,
+          fixedColumns: {
+            left: 2
+          }
         }}
       />
     </div>
