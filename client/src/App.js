@@ -104,31 +104,8 @@ function App() {
     hoveredFeature: null,
     x: null,
     y: null,
-    barChartData: [],
-    vendorId: 1,
     selection: 1
   })
-
-  useEffect(() => {
-    axios.get(`/vendors/${state.vendorId}`)
-      .then(res => res.data)
-      .then(res => {
-        let barChartData = res
-        barChartData.map((i) => {
-          return {
-            time: i.visiting_hour,
-            totalReservedSpots: i.reserved_spots
-          }
-        }, [])
-        const columns = ["Time", "TotalReservedSpots"]
-        setState(prev => ({ ...prev, ...{ barChartData, columns } }))
-      })
-      .catch((err) => {
-        console.log(err.response.status);
-        console.log(err.response.headers);
-        console.log(err.response.data);
-      });
-  }, [state.vendorId])
 
   const [viewport, setViewport] = useState({
     width: '100%',
@@ -254,58 +231,57 @@ function App() {
     <React.Fragment>
       <CssBaseline />
       <Router>
-      <Container maxWidth={false}>
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
-            <AppBar position="static" style={{ backgroundColor: 'white' }}>
-              <Toolbar>
-                <IconButton
-                  aria-label="more"
-                  aria-controls="long-menu"
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                >
-                  <MoreVertIcon />
-                </IconButton>
-                <Menu
-                  id="fade-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={open}
-                  onClose={handleClose}
-                // TransitionComponent={Fade}
-                >
-                  <MUIMenuItem onClick={handleClose}>
-                    <Link to="/users">
-                      Users
+        <Container maxWidth={false}>
+          <Grid container spacing={6}>
+            <Grid item xs={12}>
+              <AppBar position="static" style={{ backgroundColor: 'white' }}>
+                <Toolbar>
+                  <IconButton
+                    aria-label="more"
+                    aria-controls="long-menu"
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                  <Menu
+                    id="fade-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={open}
+                    onClose={handleClose}
+                  // TransitionComponent={Fade}
+                  >
+                    <MUIMenuItem onClick={handleClose}>
+                      <Link to="/users">
+                        Users
                     </Link>
-                  </MUIMenuItem>
-                  <MUIMenuItem onClick={handleClose}>
-                  <Link to="/vendors">
-                      Vendors
+                    </MUIMenuItem>
+                    <MUIMenuItem onClick={handleClose}>
+                      <Link to="/vendors">
+                        Vendors
                     </Link>
-                  </MUIMenuItem>
-                  <MUIMenuItem onClick={handleClose}>
-                  <Link to="/news">
-                      News
+                    </MUIMenuItem>
+                    <MUIMenuItem onClick={handleClose}>
+                      <Link to="/news">
+                        News
                     </Link>
-                  </MUIMenuItem>
-                </Menu>
-                <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
-                  <LocalPharmacy fontSize="large" />
-                </IconButton>
-                <Typography variant="h4" className={classes.title} color="textSecondary">
-                  SafePass
+                    </MUIMenuItem>
+                  </Menu>
+                  <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
+                    <LocalPharmacy fontSize="large" />
+                  </IconButton>
+                  <Typography variant="h4" className={classes.title} color="textSecondary">
+                    SafePass
                 </Typography>
-                <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
-                  <AccountCircle fontSize="large" />
-                </IconButton>
-              </Toolbar>
-            </AppBar>
+                  <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
+                    <AccountCircle fontSize="large" />
+                  </IconButton>
+                </Toolbar>
+              </AppBar>
+            </Grid>
           </Grid>
-        </Grid>
 
-        
           <Switch>
 
             <Route path="/news">
@@ -341,58 +317,12 @@ function App() {
             </Route>
 
             <Route path="/vendors">
-              <Grid container spacing={6}>
-              <Grid item xs={3} />
-              <Grid item xs={6}>
-                <Vendors
-                data={state.barChartData.map((item) => {
-                  return { "text": item.visiting_hour, "value": item.reserved_spots }
-                })}
-                />
-              </Grid>
-              <Grid item xs={3}>
-                  <DropdownMenu userName="Sonia Mobahi">
-                    <MenuItem text="Costco" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 1 } }))
-                    }}
-                    />
-                    <MenuItem text="Safeway" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 2 } }))
-                    }}
-                    />
-                    <MenuItem text="IGA" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 3 } }))
-                    }}
-                    />
-                    <MenuItem text="SaveOnFood" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 4 } }))
-                    }}
-                    />
-                    <MenuItem text="Wallmart" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 5 } }))
-                    }}
-                    />
-                    <MenuItem text="Persia" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 6 } }))
-                    }}
-                    />
-                    <MenuItem text="ChineeseMarket" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 7 } }))
-                    }}
-                    />
-                    <MenuItem text="DollarStore" onClick={() => {
-                      setState(prev => ({ ...prev, ...{ vendorId: 8 } }))
-                    }}
-                    />
-                  </DropdownMenu>
-                </Grid>
-                
-              </Grid>
+              <Vendors />
             </Route>
 
           </Switch>
 
-      </Container>
+        </Container>
       </Router>
     </React.Fragment>
   );
