@@ -41,11 +41,11 @@ export default function Vendors(props) {
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={3} />
-      <Grid item xs={6}>
+      <Grid item xs={7} />
+      <Grid item xs={3}>
         <BarChart
-          width={700}
-          height={450}
+          width={400}
+          height={300}
           data={state.barChartData.map((item) => {
             return { "text": item.visiting_hour, "value": item.reserved_spots }
           })}
@@ -62,7 +62,7 @@ export default function Vendors(props) {
 
         </BarChart>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <DropdownMenu userName="Sonia Mobahi">
           <MenuItem text="Costco" onClick={() => {
             setState(prev => ({ ...prev, ...{ vendorId: 1 } }))
